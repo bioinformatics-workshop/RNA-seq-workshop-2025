@@ -8,6 +8,8 @@ code-line-numbers: true
 code-overflow: scroll
 affiliation: "IIGB, University of California, Riverside"
 format: 
+  html:
+    default
   revealjs:
     theme: simple
     scrollable: true
@@ -253,9 +255,8 @@ Reference: [Van den Berge et. al (2019) Annu Rev Biomed Data Sci](https://www.an
 
 Generate a `metadata.csv` file containing information about the dataset. The metadata will be used for processing and differential expression analysis.
 
-::::: columns
-::: {.column width = "30%"}
-Metadata Header
+::: columns
+::: {.column width = "30%"} Metadata Header
 
 ``` sh
 srr_id
@@ -272,8 +273,7 @@ fq2
 ```
 :::
 
-::: {.column width = "70%"}
-Description
+::: {.column width = "70%"} Description
 
 ``` sh
 SRR ID from the SRA run
@@ -288,8 +288,8 @@ brain_6mo_br1, brain_6mo_br2, ...
 SRR23517590_1.fastq.gz, SRR23517591_1.fastq.gz, ...
 SRR23517590_2.fastq.gz, SRR23517591_2.fastq.gz, ...
 ```
-:::
-:::::
+
+::: :::::
 
 ::: callout-note
 An extensive metadata file describes the samples in detail. However, the minimum metadata file should contain the following:
@@ -429,7 +429,6 @@ Liver_6mo_br1,SRR23517686_1.fastq.gz,SRR23517686_2.fastq.gz,SRR23517686,male,C57
 Liver_6mo_br2,SRR23517687_1.fastq.gz,SRR23517687_2.fastq.gz,SRR23517687,male,C57BL/6J,Liver,6mo,2,Liver_6mo
 Liver_6mo_br3,SRR23517688_1.fastq.gz,SRR23517688_2.fastq.gz,SRR23517688,male,C57BL/6J,Liver,6mo,3,Liver_6mo
 Liver_6mo_br4,SRR23517689_1.fastq.gz,SRR23517689_2.fastq.gz,SRR23517689,male,C57BL/6J,Liver,6mo,4,Liver_6mo
-
 ```
 
 ### metadata_subset_6mo.csv
@@ -1025,7 +1024,7 @@ We will have a hands-on practice with the analysis workflow using a Jupyter note
 
 <br> All responses are anonymous and will help to improve future workshops and training.
 
-<br> [Survey link](https://bit.ly/4062Wij)
+<br> [Survey link](https://forms.gle/do2LWkURdzy8miG96)
 
 # Additional Slides
 

@@ -10,11 +10,11 @@ This workshop provides a basic introduction to RNA-seq data analysis with some h
 
 Topics covered in this workshop includes:
 
-• Introduction to RNA-seq (basic concepts)
-• RNA-seq workflow
-• QC and Alignment
-• Gene Quantification
-• Differential expression analysis
+- Introduction to RNA-seq (basic concepts)
+- RNA-seq workflow
+- QC and Alignment
+- Gene Quantification
+- Differential expression analysis
 
 Prerequisite: Some familiarity with Unix/Linux command line is beneficial  
 
