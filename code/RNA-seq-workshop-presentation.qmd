@@ -11,6 +11,7 @@ format:
   html:
     default
   revealjs:
+    footer: "[https://github.com/bioinformatics-workshop/RNA-seq-workshop-2025](https://github.com/bioinformatics-workshop/RNA-seq-workshop-2025)"
     theme: simple
     scrollable: true
     smaller: false
@@ -121,14 +122,14 @@ Cloning the repository will download all the files and directories from GitHub t
 Cloning the repository:
 
 ``` sh
-git clone https://github.com/bioinformatics-workshop/RNA-seq-workshop-Jupyter-notebook.git
+git clone https://github.com/bioinformatics-workshop/RNA-seq-workshop-2025.git
 ```
 
 <br> Once the cloning is complete, we can go into the newly-downloaded workshop repository to run our analyses.
 
 ``` sh
 # change to the workshop directory
-cd RNA-Seq-Workshop-Jupyter-notebook
+cd RNA-Seq-Workshop-2025
 
 # lists directory content
 ls
@@ -229,8 +230,8 @@ Reference: [Van den Berge et. al (2019) Annu Rev Biomed Data Sci](https://www.an
 ## Workflow Outline {.smaller}
 
 -   Create metadata
--   QC using `Fastqc` and `trim_galore`
 -   Genome indexing for `STAR` aligner
+-   QC using `Fastqc` and `trim_galore`
 -   Sequence alignment with `STAR`
 -   Gene quantification using `featureCounts`
 -   Differential expression analysis with `DESeq2`
@@ -468,6 +469,56 @@ Liver_6mo_br4,SRR23517689_1.fastq.gz,SRR23517689_2.fastq.gz,SRR23517689,male,C57
 ```
 :::
 
+## Building an index for the reference genome {.smaller}
+
+To run the STAR aligner, we first need to create an index of the genome.
+
+To generate an index, you'll need the following files:
+
+-   FASTA: Fasta file containing sequences of all the chromosomes/scaffolds for the genome
+-   GTF/GFF: General Transfer Format (GTF) or General Feature Format (GFF)
+
+::: callout-note
+You only need to run the indexing step once. The indexed files can be used for alignments for all subsequent samples
+:::
+
+::: callout-warning
+For assembled genomes containing large number of scaffolds or large genomes, this process can take some time and may require adjusting the indexing parameters.
+:::
+
+::: panel-tabset
+### Fasta File
+
+``` sh
+>chr1
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+```
+
+### GTF File
+
+``` {.sh eval="False" code-line-numbers="|1-16"}
+chrM    ncbiRefSeq.2020-10-27   transcript      15356   15422   .       -       .       gene_id "TrnP"; transcript_id "rna-TrnP";  gene_name "TrnP";
+chrM    ncbiRefSeq.2020-10-27   exon    15356   15422   .       -       .       gene_id "TrnP"; transcript_id "rna-TrnP"; exon_number "1"; exon_id "rna-TrnP.1"; gene_name "TrnP";
+chrM    ncbiRefSeq.2020-10-27   transcript      15289   15355   .       +       .       gene_id "TrnT"; transcript_id "rna-TrnT";  gene_name "TrnT";
+chrM    ncbiRefSeq.2020-10-27   exon    15289   15355   .       +       .       gene_id "TrnT"; transcript_id "rna-TrnT"; exon_number "1"; exon_id "rna-TrnT.1"; gene_name "TrnT";
+chrM    ncbiRefSeq.2020-10-27   transcript      14145   15288   .       +       .       gene_id "CYTB"; transcript_id "NP_904340.1";  gene_name "CYTB";
+chrM    ncbiRefSeq.2020-10-27   exon    14145   15288   .       +       .       gene_id "CYTB"; transcript_id "NP_904340.1"; exon_number "1"; exon_id "NP_904340.1.1"; gene_name "CYTB";
+chrM    ncbiRefSeq.2020-10-27   CDS     14145   15288   .       +       0       gene_id "CYTB"; transcript_id "NP_904340.1"; exon_number "1"; exon_id "NP_904340.1.1"; gene_name "CYTB";
+chrM    ncbiRefSeq.2020-10-27   start_codon     14145   14147   .       +       0       gene_id "CYTB"; transcript_id "NP_904340.1"; exon_number "1"; exon_id "NP_904340.1.1"; gene_name "CYTB";
+```
+:::
+
 ## Examining the raw data (FASTQ) {.smaller}
 
 Fastq files contain the raw sequence and the base quality score. Each sequence is comprised of four lines.
@@ -599,55 +650,7 @@ Brain_6mo_br2_val_2.fq.gz
 ```
 :::
 
-## Building an index for the reference genome {.smaller}
 
-To run the STAR aligner, we first need to create an index of the genome.
-
-To generate an index, you'll need the following files:
-
--   FASTA: Fasta file containing sequences of all the chromosomes/scaffolds for the genome
--   GTF/GFF: General Transfer Format (GTF) or General Feature Format (GFF)
-
-::: callout-note
-You only need to run the indexing step once. The indexed files can be used for alignments for all subsequent samples
-:::
-
-::: callout-warning
-For assembled genomes containing large number of scaffolds or large genomes, this process can take some time and may require adjusting the indexing parameters.
-:::
-
-::: panel-tabset
-### Fasta File
-
-``` sh
->chr1
-NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
-NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
-NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
-NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
-NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
-NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
-NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
-NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
-NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
-NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
-NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
-NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
-```
-
-### GTF File
-
-``` {.sh eval="False" code-line-numbers="|1-16"}
-chrM    ncbiRefSeq.2020-10-27   transcript      15356   15422   .       -       .       gene_id "TrnP"; transcript_id "rna-TrnP";  gene_name "TrnP";
-chrM    ncbiRefSeq.2020-10-27   exon    15356   15422   .       -       .       gene_id "TrnP"; transcript_id "rna-TrnP"; exon_number "1"; exon_id "rna-TrnP.1"; gene_name "TrnP";
-chrM    ncbiRefSeq.2020-10-27   transcript      15289   15355   .       +       .       gene_id "TrnT"; transcript_id "rna-TrnT";  gene_name "TrnT";
-chrM    ncbiRefSeq.2020-10-27   exon    15289   15355   .       +       .       gene_id "TrnT"; transcript_id "rna-TrnT"; exon_number "1"; exon_id "rna-TrnT.1"; gene_name "TrnT";
-chrM    ncbiRefSeq.2020-10-27   transcript      14145   15288   .       +       .       gene_id "CYTB"; transcript_id "NP_904340.1";  gene_name "CYTB";
-chrM    ncbiRefSeq.2020-10-27   exon    14145   15288   .       +       .       gene_id "CYTB"; transcript_id "NP_904340.1"; exon_number "1"; exon_id "NP_904340.1.1"; gene_name "CYTB";
-chrM    ncbiRefSeq.2020-10-27   CDS     14145   15288   .       +       0       gene_id "CYTB"; transcript_id "NP_904340.1"; exon_number "1"; exon_id "NP_904340.1.1"; gene_name "CYTB";
-chrM    ncbiRefSeq.2020-10-27   start_codon     14145   14147   .       +       0       gene_id "CYTB"; transcript_id "NP_904340.1"; exon_number "1"; exon_id "NP_904340.1.1"; gene_name "CYTB";
-```
-:::
 
 ## Sequence alignment with STAR {.smaller}
 
@@ -957,7 +960,7 @@ The custom `DESeq2` script generates several plots, tables, and genelists organi
 <br> Outputs are organized into the `genelists` or `plots` folders.
 
 ``` sh
-analysis/genotype/deseq2
+analysis/deseq2/factor
 ├── genelists
 └── plots
 ```
@@ -965,7 +968,7 @@ analysis/genotype/deseq2
 The `genelists` folder contains a summary of DEGs, all the deseq2 outputs (stored as an R object (RDS) and a CSV file, and DEGs with annotations.
 
 ``` sh
-$ ls -1 analysis/deseq2/genotype/genelists/
+$ ls -1 analysis/deseq2/factor/genelists/
 deg_summary.csv
 deseq2_results.RDS
 miR163_mut-wt.deseq2_output.csv
@@ -976,10 +979,10 @@ miR163_mut-wt.UpDEG.annotated.csv
 The `plots` folder contains a bar plot summarizing the number of DEGs, a PCA plot, and an enhanced volcano plot highlighting the DEGs.
 
 ``` sh
-$ ls -1 analysis/deseq2/genotype/plots/*png
-analysis/deseq2/genotype/plots/DEG_summary.png
-analysis/deseq2/genotype/plots/Enhancedvolcano_miR163_mut-vs-wt.png
-analysis/deseq2/genotype/plots/PCA.png
+$ ls -1 analysis/deseq2/factor/plots/*png
+analysis/deseq2/factor/plots/DEG_summary.png
+analysis/deseq2/factor/plots/Enhancedvolcano_miR163_mut-vs-wt.png
+analysis/deseq2/factor/plots/PCA.png
 ```
 
 <br>

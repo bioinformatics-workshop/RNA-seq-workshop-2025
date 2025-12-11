@@ -4,7 +4,6 @@
 #SBATCH --cpus-per-task=2
 #SBATCH --mem=12g
 #SBATCH --time=0-2:00:00
-#SBATCH --mail-type=ALL
 #SBATCH --job-name="get-sra-info"
 #SBATCH --output=log/%x_%A.log
 ##################################################################

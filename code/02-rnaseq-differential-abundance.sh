@@ -4,7 +4,6 @@
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=100g
 #SBATCH --time=2:00:00
-#SBATCH --mail-type=ALL
 #SBATCH --job-name="02-rnaseq-diffexpr"
 #SBATCH --output=log/%x_%j.log
 ##################################################################

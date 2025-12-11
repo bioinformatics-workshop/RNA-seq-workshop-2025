@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --partition=batch
+#SBATCH --partition=epyc
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=4g
 #SBATCH --time=6:00:00
@@ -16,13 +16,8 @@ GTF=https://hgdownload.soe.ucsc.edu/goldenPath/mm39/bigZips/genes/mm39.ncbiRefSe
 # REFGENE_GTF=https://hgdownload.soe.ucsc.edu/goldenPath/mm39/bigZips/genes/refGene.gtf.gz
 OUT_DIR=genome
 
-# download files
-# for URL in TRANSCRIPTS GENOME GTF GFF3
-# do
-#   wget --directory-prefix=${OUT_DIR} ${!URL}
-# done
-
-for URL in GENOME GTF REFGENE_GTF
+# download filess
+for URL in GENOME GTF
 do
   wget --directory-prefix=${OUT_DIR} ${!URL}
 done

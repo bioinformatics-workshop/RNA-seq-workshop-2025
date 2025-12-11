@@ -16,6 +16,7 @@ Brain_6mo_br2,SRR23517639_1.fastq.gz,SRR23517639_2.fastq.gz,SRR23517639,male,C57
 Brain_6mo_br3,SRR23517640_1.fastq.gz,SRR23517640_2.fastq.gz,SRR23517640,male,C57BL/6J,Brain,6mo,3,Brain_6mo
 Brain_6mo_br4,SRR23517641_1.fastq.gz,SRR23517641_2.fastq.gz,SRR23517641,male,C57BL/6J,Brain,6mo,4,Brain_6mo
 Muscle_6mo_br1,SRR23517654_1.fastq.gz,SRR23517654_2.fastq.gz,SRR23517654,male,C57BL/6J,Muscle,6mo,1,Muscle_6mo
+Muscle_6mo_br2,SRR23517655_1.fastq.gz,SRR23517655_2.fastq.gz,SRR23517655,male,C57BL/6J,Muscle,6mo,2,Muscle_6mo
 Muscle_6mo_br3,SRR23517656_1.fastq.gz,SRR23517656_2.fastq.gz,SRR23517656,male,C57BL/6J,Muscle,6mo,3,Muscle_6mo
 Muscle_6mo_br4,SRR23517657_1.fastq.gz,SRR23517657_2.fastq.gz,SRR23517657,male,C57BL/6J,Muscle,6mo,4,Muscle_6mo
 Lung_6mo_br1,SRR23517670_1.fastq.gz,SRR23517670_2.fastq.gz,SRR23517670,male,C57BL/6J,Lung,6mo,1,Lung_6mo
