@@ -1,0 +1,1 @@
+/rhome/lbrandon/bigdata/public_datasets/PRJNA936435/analysis/trimgalore/SRR23517657_1.fastq.gz_trimming_report.txt

@@ -1,7 +1,0 @@
-samplename,fq1,fq2,srr_id,ecotype,genotype,treatment,tissue,biorep
-mir163_1,SRR24016000_sub1M_1.fastq.gz,SRR24016000_sub1M_2.fastq.gz,SRR24016000_sub1M,Col-0,miR163_mut,7-day-old seedlings without treatment,seedlings,1
-mir163_2,SRR24016001_sub1M_1.fastq.gz,SRR24016001_sub1M_2.fastq.gz,SRR24016001_sub1M,Col-0,miR163_mut,7-day-old seedlings without treatment,seedlings,2
-mir163_3,SRR24016002_sub1M_1.fastq.gz,SRR24016002_sub1M_2.fastq.gz,SRR24016002_sub1M,Col-0,miR163_mut,7-day-old seedlings without treatment,seedlings,3
-wt_1,SRR24016003_sub1M_1.fastq.gz,SRR24016003_sub1M_2.fastq.gz,SRR24016003_sub1M,Col-0,wt,7-day-old seedlings without treatment,seedlings,1
-wt_2,SRR24016004_sub1M_1.fastq.gz,SRR24016004_sub1M_2.fastq.gz,SRR24016004_sub1M,Col-0,wt,7-day-old seedlings without treatment,seedlings,2
-wt_3,SRR24016005_sub1M_1.fastq.gz,SRR24016005_sub1M_2.fastq.gz,SRR24016005_sub1M,Col-0,wt,7-day-old seedlings without treatment,seedlings,3

@@ -2,7 +2,7 @@
 title: "Intro to RNA-seq Analysis"
 subtitle: "Hosted by the IIGB Bioinformatics Core"
 author: "Brandon Le"
-date-modified: 05-16-2024
+date-modified: 12-11-2025
 institute: "Genomics Building 1207G"
 code-line-numbers: true
 code-overflow: scroll
@@ -29,15 +29,14 @@ standalone: true
 
 ## IIGB Bioinformatics Core
 
-:::{.panel-tabset}
-
+::: panel-tabset
 ### Website {.smaller}
-<https://facility.bioinformatics.ucr.edu>  
+
+<https://facility.bioinformatics.ucr.edu>
 
 ![](img/BC-backsplash.png){.absolute width="600"}
 
-
-### Services {.smaller }
+### Services {.smaller}
 
 -   Data analysis
     -   RNA-seq, ChIP-seq
@@ -52,7 +51,7 @@ standalone: true
 -   [Repositories](https://github.com/orgs/bioinformatics-workshop/repositories)
 -   Past workshops
     -   [Intro to Unix](https://github.com/bioinformatics-workshop/Intro-to-Unix)
-    -   [Intro to R/R-Studio](https://github.com/bioinformatics-workshop/Intro-to-R-RStudio) 
+    -   [Intro to R/R-Studio](https://github.com/bioinformatics-workshop/Intro-to-R-RStudio)
     -   [Intro to Shell Scripting](https://github.com/bioinformatics-workshop/Intro-to-Shell-Scripting)
     -   [RNA-seq-workshop](https://github.com/bioinformatics-workshop/RNA-Seq-Workshop)
 
@@ -61,42 +60,39 @@ standalone: true
 -   Daily (2-3PM)
 -   In-person or via Zoom (by appt)
 -   [Calendly](https://calendly.com/ucr_iigb_bioinfocore)
-
 :::
 
 # Workshop Outline {.smaller}
 
-  - Core intro
-  - Server Access
-  - Introduction to RNA-seq
-  - RNA-seq workflow (in depth)
-  - Hands-on with Jupyter Notebook
-
+-   Core intro
+-   Server Access
+-   Introduction to RNA-seq
+-   RNA-seq workflow (in depth)
+-   Hands-on with Jupyter Notebook
 
 # Accessing the Web-based Notebook {.smaller}
 
 ## Logging in to the server via OnDemand {.smaller}
+
 <br>
 
 You should receive an email with login information if you've never had an account on the HPCC. For those with an account already, you can use the same credentials to log into the server.
 
-Open up your browser and type the following URL: [https://ondemand.hpcc.ucr.edu](https://ondemand.hpcc.ucr.edu)
+Open up your browser and type the following URL: <https://ondemand.hpcc.ucr.edu>
 
 ![](img/Ondemand_login.png)
 
-::: {.callout-note}
+::: callout-note
 Use the provided login credentials to log in to OnDemand. Then you'll be ask for authentication password and two-factor validation with DUO.
 :::
 
-<br>
-After logging in, you'll see the HPCC OnDemand Welcome Page  
+<br> After logging in, you'll see the HPCC OnDemand Welcome Page
 
 ![](img/OnDemand_home.png)
 
-
 ## Requesting a Juypter Notebook Interactive Session {.smaller}
 
-We will use the interactive Jupyter notebook for the workshop tutorials. To request the interactive app, click on `Interactive Apps` and select `Jupyter Notebook`.  
+We will use the interactive Jupyter notebook for the workshop tutorials. To request the interactive app, click on `Interactive Apps` and select `Jupyter Notebook`.
 
 ![](img/Jupyter-interactive-app.png)
 
@@ -104,11 +100,11 @@ You will see an app launch form. Fill in the following information:
 
 ![](img/Jupyter-app-form.png)
 
-Then click `Launch` and wait for resources to be gathered for your app. 
+Then click `Launch` and wait for resources to be gathered for your app.
 
 ![](img/Jupyter-app-queue.png)
 
-Once the app is ready, click `Connect to Jupyter` to launch the Jupyter notebook. 
+Once the app is ready, click `Connect to Jupyter` to launch the Jupyter notebook.
 
 ![](img/Jupyter-app-launch.png)
 
@@ -122,13 +118,13 @@ Cloning the repository will download all the files and directories from GitHub t
 
 Cloning the repository:
 
-```sh
+``` sh
 git clone https://github.com/bioinformatics-workshop/RNA-seq-workshop-Jupyter-notebook.git
 ```
-<br>
-Once the cloning is complete, we can go into the newly-downloaded workshop repository to run our analyses.
 
-```sh
+<br> Once the cloning is complete, we can go into the newly-downloaded workshop repository to run our analyses.
+
+``` sh
 # change to the workshop directory
 cd RNA-Seq-Workshop-Jupyter-notebook
 
@@ -136,10 +132,9 @@ cd RNA-Seq-Workshop-Jupyter-notebook
 ls
 ```
 
-<br>
-The home directory structure for the workshop should look like this:
+<br> The home directory structure for the workshop should look like this:
 
-```sh
+``` sh
 ├── README.md
 ├── RNA-seq-workflow.ipynb
 ├── analysis
@@ -149,49 +144,45 @@ The home directory structure for the workshop should look like this:
 ├── log
 ├── metadata
 └── raw
-
 ```
 
-::: {.callout-tip}
+::: callout-tip
+Cloning the repository will give you the most up-to-date files. To get the latest updates of the repository later on, you don't need to clone again. Instead, you can `pull` the updates from GitHub to your server/computer. Make sure you are in the home directory of the workshop before running the command.
 
-Cloning the repository will give you the most up-to-date files. To get the latest updates of the repository later on, you don't need to clone again. Instead, you can  `pull` the updates from GitHub to your server/computer. Make sure you are in the home directory of the workshop before running the command.
-
-
-```sh
+``` sh
 git pull
 ```
 :::
 
-
-:::{.callout-caution}
+::: callout-caution
 The `pull` command will overwrite any changes you've made locally. If you want to keep the changes and update the new things, you can run:
 
-```sh
+``` sh
 git stash
 git pull
 git stash apply
 ```
 
-- `git stash`: This command stashes your local changes, creating a temporary backup.
-- `git pull`: This command fetches the changes from the remote repository and merges them into the local branch.
-- `git stash apply`: This command applies the stashed changes back to the working directory.
+-   `git stash`: This command stashes your local changes, creating a temporary backup.
+-   `git pull`: This command fetches the changes from the remote repository and merges them into the local branch.
+-   `git stash apply`: This command applies the stashed changes back to the working directory.
 
 Alternatively, if you want a complete reset of your local directory with the updates from GitHub, you can run:
 
-```sh
+``` sh
 git reset --hard HEAD && git clean -f -d && git pull  
 ```
 
-- `git reset --hard HEAD`: This command resets the current branch to the HEAD commit of the remote repository, discarding any local changes.
-- `git clean -f -d`: This command removes any untracked files and directories from the working directory.
-- `git pull`: This command fetches the changes from the remote repository and merges them into the local branch.
+-   `git reset --hard HEAD`: This command resets the current branch to the HEAD commit of the remote repository, discarding any local changes.
+-   `git clean -f -d`: This command removes any untracked files and directories from the working directory.
+-   `git pull`: This command fetches the changes from the remote repository and merges them into the local branch.
 :::
 
 # RNA-seq Background
 
 ## What is RNA-seq? {.smaller}
 
-RNA sequencing or **RNA-seq** is one of many methods used for gene expression studies by obtaining a snapshot of the RNA molecules within a biological system. 
+RNA sequencing or **RNA-seq** is one of many methods used for gene expression studies by obtaining a snapshot of the RNA molecules within a biological system.
 
 ![](img/workflow-bd020139.f1.jpeg)
 
@@ -219,18 +210,19 @@ Reference: [Van den Berge et. al (2019) Annu Rev Biomed Data Sci](https://www.an
 
 <br>
 
-| Category 	| Description 	|
-|---	|---	|
-| **BioProject** 	| PRJNA950346 	|
-| **GEO Series** 	| [GSE228555](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE228555) 	|
-| **Title** 	| Transcriptome expression of WT and mir163 mutant 	|
-| **Organism** 	| Arabidopsis thaliana 	|
-| **Ecotype** 	| Col-0 	|
-| **Genotype** 	| WT, miR163 mutant 	|
-| **Replicates** 	| 3 	|
-| **Tissue** 	| Seedlings 	|
-| **Library kit** 	| NEBNext® Ultra™ RNA Library Prep Kit for Illumina (non-stranded) 	|
-| **Sequencing** 	| Illumina paired-end 150bp 	|
+| Category | Description |
+|------------------------------------|------------------------------------|
+| **BioProject** | PRJNA936435 |
+| **GEO Series** | [GSE225576](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE225576) |
+| **Title** | An atlas of the aging mouse transcriptome and proteome reveals the features of age-related post-transcriptional dysregulation [(PMID: 39353907](https://www.nature.com/articles/s41467-024-52845-x)) |
+| **Organism** | Mus musculus |
+| **Strain** | C57BL/6J |
+| **Genotype** | Wild type |
+| **Replicates** | 4 |
+| **Organ** | aorta, brain, heart, kidney, liver, lung, muscle, skin |
+| **Age (months)** | 6, 15, 24, 30 |
+| **Library kit** | Illumina Stranded mRNA Prep kit |
+| **Sequencing** | Illumina paired-end 150bp (NovaSeq 6000) |
 
 ## Workflow Outline {.smaller}
 
@@ -244,124 +236,253 @@ Reference: [Van den Berge et. al (2019) Annu Rev Biomed Data Sci](https://www.an
 
 ## Analysis Toolkit {.smaller}
 
-| Program	| Type	| Software	| Reference	| Misc	|
-|---	|---	|---	|---	|----	|
-| Fastqc	| QC	| [Software](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)	| [Ref](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)	| 	|
-| Trim_galore	| QC	| [Software](https://www.bioinformatics.babraham.ac.uk/projects/trim_galore/)	| [Ref](https://zenodo.org/records/7598955)	| 	|
-| Multiqc	| QC 	| [Software](https://multiqc.info)	| [Ref](https://academic.oup.com/bioinformatics/article/32/19/3047/2196507)	| [Manual](https://multiqc.info/docs/)	|
-| STAR	| Alignment| [Software](https://github.com/alexdobin/STAR/releases)  	| [Ref](https://academic.oup.com/bioinformatics/article/29/1/15/272537)	| [Manual](https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf)	|
-| FeatureCounts	| Quantification	| [Software](https://sourceforge.net/projects/subread/files/subread-2.0.6/)	| [Ref](https://academic.oup.com/bioinformatics/article/30/7/923/232889)	|	|
-| DESeq2	| Differential Expression	| [Software](https://www.bioconductor.org/packages/release/bioc/html/DESeq2.html)	| [Ref](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-014-0550-8)	| [Guide](https://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html) 	|
-| IGV	| Visualization	| [Software](https://igv.org/doc/desktop/)	| [Ref](https://academic.oup.com/bib/article/14/2/178/208453) 	| [Web App](https://igv.org/app/)       	|
-| R	| Other	| [Software](https://cran.r-project.org)	| [Ref](https://www.R-project)	|	|
-| Tidyverse	| Other 	| [Software](https://www.tidyverse.org)	| [Ref](https://joss.theoj.org/papers/10.21105/joss.01686)	|   	|
-| EnhancedVolcano	| Other 	| [Software](https://bioconductor.org/packages/release/bioc/html/EnhancedVolcano.html) 	| [Ref](https://github.com/kevinblighe/EnhancedVolcano)	|	|
+| Program | Type | Software | Reference | Misc |
+|---------------|---------------|---------------|---------------|---------------|
+| Fastqc | QC | [Software](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) | [Ref](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) |  |
+| Trim_galore | QC | [Software](https://www.bioinformatics.babraham.ac.uk/projects/trim_galore/) | [Ref](https://zenodo.org/records/7598955) |  |
+| Multiqc | QC | [Software](https://multiqc.info) | [Ref](https://academic.oup.com/bioinformatics/article/32/19/3047/2196507) | [Manual](https://multiqc.info/docs/) |
+| STAR | Alignment | [Software](https://github.com/alexdobin/STAR/releases) | [Ref](https://academic.oup.com/bioinformatics/article/29/1/15/272537) | [Manual](https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf) |
+| FeatureCounts | Quantification | [Software](https://sourceforge.net/projects/subread/files/subread-2.0.6/) | [Ref](https://academic.oup.com/bioinformatics/article/30/7/923/232889) |  |
+| DESeq2 | Differential Expression | [Software](https://www.bioconductor.org/packages/release/bioc/html/DESeq2.html) | [Ref](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-014-0550-8) | [Guide](https://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html) |
+| IGV | Visualization | [Software](https://igv.org/doc/desktop/) | [Ref](https://academic.oup.com/bib/article/14/2/178/208453) | [Web App](https://igv.org/app/) |
+| R | Other | [Software](https://cran.r-project.org) | [Ref](https://www.R-project) |  |
+| Tidyverse | Other | [Software](https://www.tidyverse.org) | [Ref](https://joss.theoj.org/papers/10.21105/joss.01686) |  |
+| EnhancedVolcano | Other | [Software](https://bioconductor.org/packages/release/bioc/html/EnhancedVolcano.html) | [Ref](https://github.com/kevinblighe/EnhancedVolcano) |  |
 
 ## Data Preparation - Create metadata {.smaller}
 
 Generate a `metadata.csv` file containing information about the dataset. The metadata will be used for processing and differential expression analysis.
 
-:::: {.columns}
-
-::: {.column}
+::::: columns
+::: {.column width = "30%"}
 Metadata Header
-```sh
+
+``` sh
 srr_id
-ecotype
+strain
 genotype
-treatment
-tissue
+sex
+organ
+age
 biorep
+factor
 samplename
 fq1
 fq2
 ```
 :::
 
-::: {.column}
+::: {.column width = "70%"}
 Description
-```sh
+
+``` sh
 SRR ID from the SRA run
-Col-0
-WT, miR163_mut
-7-day-old plants
-seedlings
-1,2,3
-wt_1,wt_2,wt_3,mir163_1,mir163_2, mir163_3
-raw/SRRxxxx_1.fastq.gz
-raw/SRRxxxx_2.fastq.gz
+C57BL/6J
+Wild type
+male
+brain, heart, kidney, liver, lung, muscle, skin
+6, 15, 24, 30 (months)
+1,2,3,4
+brain_6mo, heart_6mo, ...
+brain_6mo_br1, brain_6mo_br2, ...
+SRR23517590_1.fastq.gz, SRR23517591_1.fastq.gz, ...
+SRR23517590_2.fastq.gz, SRR23517591_2.fastq.gz, ...
 ```
-
 :::
+:::::
 
-::::
-
-::: {.callout-note}
+::: callout-note
 An extensive metadata file describes the samples in detail. However, the minimum metadata file should contain the following:
 
-- samplename (sometime it's the same name as the fastq file), 
-- fq1/fq2
-- condition/treatment/genotype (factor to run comparison)
+-   samplename (sometime it's the same name as the fastq file),
+-   fq1/fq2
+-   condition/treatment/genotype (factor to run comparison)
 
 Other metadata info can include:
 
-- time point
-- technical replicate
-- sequencing batch
-- library kits
-- cell line
-- etc...
-
+-   time point
+-   technical replicate
+-   sequencing batch
+-   library kits
+-   cell line
+-   etc...
 :::
 
 <br>
 
-:::{.panel-tabset}
-
+::: panel-tabset
 ### metadata.csv
 
-This file contains the metadata for the full dataset
+This file contains the metadata for the full dataset (all 112 samples)
 
-```sh
-samplename,fq1,fq2,srr_id,ecotype,genotype,treatment,tissue,biorep
-mir163_1,SRR24016000_1.fastq.gz,SRR24016000_2.fastq.gz,SRR24016000,Col-0,miR163_mut,7-day-old seedlings without treatment,seedlings,1
-mir163_2,SRR24016001_1.fastq.gz,SRR24016001_2.fastq.gz,SRR24016001,Col-0,miR163_mut,7-day-old seedlings without treatment,seedlings,2
-mir163_3,SRR24016002_1.fastq.gz,SRR24016002_2.fastq.gz,SRR24016002,Col-0,miR163_mut,7-day-old seedlings without treatment,seedlings,3
-wt_1,SRR24016003_1.fastq.gz,SRR24016003_2.fastq.gz,SRR24016003,Col-0,wt,7-day-old seedlings without treatment,seedlings,1
-wt_2,SRR24016004_1.fastq.gz,SRR24016004_2.fastq.gz,SRR24016004,Col-0,wt,7-day-old seedlings without treatment,seedlings,2
-wt_3,SRR24016005_1.fastq.gz,SRR24016005_2.fastq.gz,SRR24016005,Col-0,wt,7-day-old seedlings without treatment,seedlings,3
+``` sh
+samplename,fq1,fq2,srr_id,sex,strain,organ,age,biorep,factor
+Skin_30mo_br1,SRR23517578_1.fastq.gz,SRR23517578_2.fastq.gz,SRR23517578,male,C57BL/6J,Skin,30mo,1,Skin_30mo
+Skin_30mo_br2,SRR23517579_1.fastq.gz,SRR23517579_2.fastq.gz,SRR23517579,male,C57BL/6J,Skin,30mo,2,Skin_30mo
+Skin_30mo_br3,SRR23517580_1.fastq.gz,SRR23517580_2.fastq.gz,SRR23517580,male,C57BL/6J,Skin,30mo,3,Skin_30mo
+Skin_30mo_br4,SRR23517581_1.fastq.gz,SRR23517581_2.fastq.gz,SRR23517581,male,C57BL/6J,Skin,30mo,4,Skin_30mo
+Skin_24mo_br1,SRR23517582_1.fastq.gz,SRR23517582_2.fastq.gz,SRR23517582,male,C57BL/6J,Skin,24mo,1,Skin_24mo
+Skin_24mo_br2,SRR23517583_1.fastq.gz,SRR23517583_2.fastq.gz,SRR23517583,male,C57BL/6J,Skin,24mo,2,Skin_24mo
+Skin_24mo_br3,SRR23517584_1.fastq.gz,SRR23517584_2.fastq.gz,SRR23517584,male,C57BL/6J,Skin,24mo,3,Skin_24mo
+Skin_24mo_br4,SRR23517585_1.fastq.gz,SRR23517585_2.fastq.gz,SRR23517585,male,C57BL/6J,Skin,24mo,4,Skin_24mo
+Skin_15mo_br1,SRR23517586_1.fastq.gz,SRR23517586_2.fastq.gz,SRR23517586,male,C57BL/6J,Skin,15mo,1,Skin_15mo
+Skin_15mo_br2,SRR23517587_1.fastq.gz,SRR23517587_2.fastq.gz,SRR23517587,male,C57BL/6J,Skin,15mo,2,Skin_15mo
+Skin_15mo_br3,SRR23517588_1.fastq.gz,SRR23517588_2.fastq.gz,SRR23517588,male,C57BL/6J,Skin,15mo,3,Skin_15mo
+Skin_15mo_br4,SRR23517589_1.fastq.gz,SRR23517589_2.fastq.gz,SRR23517589,male,C57BL/6J,Skin,15mo,4,Skin_15mo
+Skin_6mo_br1,SRR23517590_1.fastq.gz,SRR23517590_2.fastq.gz,SRR23517590,male,C57BL/6J,Skin,6mo,1,Skin_6mo
+Skin_6mo_br2,SRR23517591_1.fastq.gz,SRR23517591_2.fastq.gz,SRR23517591,male,C57BL/6J,Skin,6mo,2,Skin_6mo
+Skin_6mo_br3,SRR23517592_1.fastq.gz,SRR23517592_2.fastq.gz,SRR23517592,male,C57BL/6J,Skin,6mo,3,Skin_6mo
+Skin_6mo_br4,SRR23517593_1.fastq.gz,SRR23517593_2.fastq.gz,SRR23517593,male,C57BL/6J,Skin,6mo,4,Skin_6mo
+Kidney_30mo_br1,SRR23517594_1.fastq.gz,SRR23517594_2.fastq.gz,SRR23517594,male,C57BL/6J,Kidney,30mo,1,Kidney_30mo
+Kidney_30mo_br2,SRR23517595_1.fastq.gz,SRR23517595_2.fastq.gz,SRR23517595,male,C57BL/6J,Kidney,30mo,2,Kidney_30mo
+Kidney_30mo_br3,SRR23517596_1.fastq.gz,SRR23517596_2.fastq.gz,SRR23517596,male,C57BL/6J,Kidney,30mo,3,Kidney_30mo
+Kidney_30mo_br4,SRR23517597_1.fastq.gz,SRR23517597_2.fastq.gz,SRR23517597,male,C57BL/6J,Kidney,30mo,4,Kidney_30mo
+Kidney_24mo_br1,SRR23517598_1.fastq.gz,SRR23517598_2.fastq.gz,SRR23517598,male,C57BL/6J,Kidney,24mo,1,Kidney_24mo
+Kidney_24mo_br2,SRR23517599_1.fastq.gz,SRR23517599_2.fastq.gz,SRR23517599,male,C57BL/6J,Kidney,24mo,2,Kidney_24mo
+Kidney_24mo_br3,SRR23517600_1.fastq.gz,SRR23517600_2.fastq.gz,SRR23517600,male,C57BL/6J,Kidney,24mo,3,Kidney_24mo
+Kidney_24mo_br4,SRR23517601_1.fastq.gz,SRR23517601_2.fastq.gz,SRR23517601,male,C57BL/6J,Kidney,24mo,4,Kidney_24mo
+Kidney_15mo_br1,SRR23517602_1.fastq.gz,SRR23517602_2.fastq.gz,SRR23517602,male,C57BL/6J,Kidney,15mo,1,Kidney_15mo
+Kidney_15mo_br2,SRR23517603_1.fastq.gz,SRR23517603_2.fastq.gz,SRR23517603,male,C57BL/6J,Kidney,15mo,2,Kidney_15mo
+Kidney_15mo_br3,SRR23517604_1.fastq.gz,SRR23517604_2.fastq.gz,SRR23517604,male,C57BL/6J,Kidney,15mo,3,Kidney_15mo
+Kidney_15mo_br4,SRR23517605_1.fastq.gz,SRR23517605_2.fastq.gz,SRR23517605,male,C57BL/6J,Kidney,15mo,4,Kidney_15mo
+Kidney_6mo_br1,SRR23517606_1.fastq.gz,SRR23517606_2.fastq.gz,SRR23517606,male,C57BL/6J,Kidney,6mo,1,Kidney_6mo
+Kidney_6mo_br2,SRR23517607_1.fastq.gz,SRR23517607_2.fastq.gz,SRR23517607,male,C57BL/6J,Kidney,6mo,2,Kidney_6mo
+Kidney_6mo_br3,SRR23517608_1.fastq.gz,SRR23517608_2.fastq.gz,SRR23517608,male,C57BL/6J,Kidney,6mo,3,Kidney_6mo
+Kidney_6mo_br4,SRR23517609_1.fastq.gz,SRR23517609_2.fastq.gz,SRR23517609,male,C57BL/6J,Kidney,6mo,4,Kidney_6mo
+Heart_30mo_br1,SRR23517610_1.fastq.gz,SRR23517610_2.fastq.gz,SRR23517610,male,C57BL/6J,Heart,30mo,1,Heart_30mo
+Heart_30mo_br2,SRR23517611_1.fastq.gz,SRR23517611_2.fastq.gz,SRR23517611,male,C57BL/6J,Heart,30mo,2,Heart_30mo
+Heart_30mo_br3,SRR23517612_1.fastq.gz,SRR23517612_2.fastq.gz,SRR23517612,male,C57BL/6J,Heart,30mo,3,Heart_30mo
+Heart_30mo_br4,SRR23517613_1.fastq.gz,SRR23517613_2.fastq.gz,SRR23517613,male,C57BL/6J,Heart,30mo,4,Heart_30mo
+Heart_24mo_br1,SRR23517614_1.fastq.gz,SRR23517614_2.fastq.gz,SRR23517614,male,C57BL/6J,Heart,24mo,1,Heart_24mo
+Heart_24mo_br2,SRR23517615_1.fastq.gz,SRR23517615_2.fastq.gz,SRR23517615,male,C57BL/6J,Heart,24mo,2,Heart_24mo
+Heart_24mo_br3,SRR23517616_1.fastq.gz,SRR23517616_2.fastq.gz,SRR23517616,male,C57BL/6J,Heart,24mo,3,Heart_24mo
+Heart_24mo_br4,SRR23517617_1.fastq.gz,SRR23517617_2.fastq.gz,SRR23517617,male,C57BL/6J,Heart,24mo,4,Heart_24mo
+Heart_15mo_br1,SRR23517618_1.fastq.gz,SRR23517618_2.fastq.gz,SRR23517618,male,C57BL/6J,Heart,15mo,1,Heart_15mo
+Heart_15mo_br2,SRR23517619_1.fastq.gz,SRR23517619_2.fastq.gz,SRR23517619,male,C57BL/6J,Heart,15mo,2,Heart_15mo
+Heart_15mo_br3,SRR23517620_1.fastq.gz,SRR23517620_2.fastq.gz,SRR23517620,male,C57BL/6J,Heart,15mo,3,Heart_15mo
+Heart_15mo_br4,SRR23517621_1.fastq.gz,SRR23517621_2.fastq.gz,SRR23517621,male,C57BL/6J,Heart,15mo,4,Heart_15mo
+Heart_6mo_br1,SRR23517622_1.fastq.gz,SRR23517622_2.fastq.gz,SRR23517622,male,C57BL/6J,Heart,6mo,1,Heart_6mo
+Heart_6mo_br2,SRR23517623_1.fastq.gz,SRR23517623_2.fastq.gz,SRR23517623,male,C57BL/6J,Heart,6mo,2,Heart_6mo
+Heart_6mo_br3,SRR23517624_1.fastq.gz,SRR23517624_2.fastq.gz,SRR23517624,male,C57BL/6J,Heart,6mo,3,Heart_6mo
+Heart_6mo_br4,SRR23517625_1.fastq.gz,SRR23517625_2.fastq.gz,SRR23517625,male,C57BL/6J,Heart,6mo,4,Heart_6mo
+Brain_30mo_br1,SRR23517626_1.fastq.gz,SRR23517626_2.fastq.gz,SRR23517626,male,C57BL/6J,Brain,30mo,1,Brain_30mo
+Brain_30mo_br2,SRR23517627_1.fastq.gz,SRR23517627_2.fastq.gz,SRR23517627,male,C57BL/6J,Brain,30mo,2,Brain_30mo
+Brain_30mo_br3,SRR23517628_1.fastq.gz,SRR23517628_2.fastq.gz,SRR23517628,male,C57BL/6J,Brain,30mo,3,Brain_30mo
+Brain_30mo_br4,SRR23517629_1.fastq.gz,SRR23517629_2.fastq.gz,SRR23517629,male,C57BL/6J,Brain,30mo,4,Brain_30mo
+Brain_24mo_br1,SRR23517630_1.fastq.gz,SRR23517630_2.fastq.gz,SRR23517630,male,C57BL/6J,Brain,24mo,1,Brain_24mo
+Brain_24mo_br2,SRR23517631_1.fastq.gz,SRR23517631_2.fastq.gz,SRR23517631,male,C57BL/6J,Brain,24mo,2,Brain_24mo
+Brain_24mo_br3,SRR23517632_1.fastq.gz,SRR23517632_2.fastq.gz,SRR23517632,male,C57BL/6J,Brain,24mo,3,Brain_24mo
+Brain_24mo_br4,SRR23517633_1.fastq.gz,SRR23517633_2.fastq.gz,SRR23517633,male,C57BL/6J,Brain,24mo,4,Brain_24mo
+Brain_15mo_br1,SRR23517634_1.fastq.gz,SRR23517634_2.fastq.gz,SRR23517634,male,C57BL/6J,Brain,15mo,1,Brain_15mo
+Brain_15mo_br2,SRR23517635_1.fastq.gz,SRR23517635_2.fastq.gz,SRR23517635,male,C57BL/6J,Brain,15mo,2,Brain_15mo
+Brain_15mo_br3,SRR23517636_1.fastq.gz,SRR23517636_2.fastq.gz,SRR23517636,male,C57BL/6J,Brain,15mo,3,Brain_15mo
+Brain_15mo_br4,SRR23517637_1.fastq.gz,SRR23517637_2.fastq.gz,SRR23517637,male,C57BL/6J,Brain,15mo,4,Brain_15mo
+Brain_6mo_br1,SRR23517638_1.fastq.gz,SRR23517638_2.fastq.gz,SRR23517638,male,C57BL/6J,Brain,6mo,1,Brain_6mo
+Brain_6mo_br2,SRR23517639_1.fastq.gz,SRR23517639_2.fastq.gz,SRR23517639,male,C57BL/6J,Brain,6mo,2,Brain_6mo
+Brain_6mo_br3,SRR23517640_1.fastq.gz,SRR23517640_2.fastq.gz,SRR23517640,male,C57BL/6J,Brain,6mo,3,Brain_6mo
+Brain_6mo_br4,SRR23517641_1.fastq.gz,SRR23517641_2.fastq.gz,SRR23517641,male,C57BL/6J,Brain,6mo,4,Brain_6mo
+Muscle_30mo_br1,SRR23517642_1.fastq.gz,SRR23517642_2.fastq.gz,SRR23517642,male,C57BL/6J,Muscle,30mo,1,Muscle_30mo
+Muscle_30mo_br2,SRR23517643_1.fastq.gz,SRR23517643_2.fastq.gz,SRR23517643,male,C57BL/6J,Muscle,30mo,2,Muscle_30mo
+Muscle_30mo_br3,SRR23517644_1.fastq.gz,SRR23517644_2.fastq.gz,SRR23517644,male,C57BL/6J,Muscle,30mo,3,Muscle_30mo
+Muscle_30mo_br4,SRR23517645_1.fastq.gz,SRR23517645_2.fastq.gz,SRR23517645,male,C57BL/6J,Muscle,30mo,4,Muscle_30mo
+Muscle_24mo_br1,SRR23517646_1.fastq.gz,SRR23517646_2.fastq.gz,SRR23517646,male,C57BL/6J,Muscle,24mo,1,Muscle_24mo
+Muscle_24mo_br2,SRR23517647_1.fastq.gz,SRR23517647_2.fastq.gz,SRR23517647,male,C57BL/6J,Muscle,24mo,2,Muscle_24mo
+Muscle_24mo_br3,SRR23517648_1.fastq.gz,SRR23517648_2.fastq.gz,SRR23517648,male,C57BL/6J,Muscle,24mo,3,Muscle_24mo
+Muscle_24mo_br4,SRR23517649_1.fastq.gz,SRR23517649_2.fastq.gz,SRR23517649,male,C57BL/6J,Muscle,24mo,4,Muscle_24mo
+Muscle_15mo_br1,SRR23517650_1.fastq.gz,SRR23517650_2.fastq.gz,SRR23517650,male,C57BL/6J,Muscle,15mo,1,Muscle_15mo
+Muscle_15mo_br2,SRR23517651_1.fastq.gz,SRR23517651_2.fastq.gz,SRR23517651,male,C57BL/6J,Muscle,15mo,2,Muscle_15mo
+Muscle_15mo_br3,SRR23517652_1.fastq.gz,SRR23517652_2.fastq.gz,SRR23517652,male,C57BL/6J,Muscle,15mo,3,Muscle_15mo
+Muscle_15mo_br4,SRR23517653_1.fastq.gz,SRR23517653_2.fastq.gz,SRR23517653,male,C57BL/6J,Muscle,15mo,4,Muscle_15mo
+Muscle_6mo_br1,SRR23517654_1.fastq.gz,SRR23517654_2.fastq.gz,SRR23517654,male,C57BL/6J,Muscle,6mo,1,Muscle_6mo
+Muscle_6mo_br2,SRR23517655_1.fastq.gz,SRR23517655_2.fastq.gz,SRR23517655,male,C57BL/6J,Muscle,6mo,2,Muscle_6mo
+Muscle_6mo_br3,SRR23517656_1.fastq.gz,SRR23517656_2.fastq.gz,SRR23517656,male,C57BL/6J,Muscle,6mo,3,Muscle_6mo
+Muscle_6mo_br4,SRR23517657_1.fastq.gz,SRR23517657_2.fastq.gz,SRR23517657,male,C57BL/6J,Muscle,6mo,4,Muscle_6mo
+Lung_30mo_br1,SRR23517658_1.fastq.gz,SRR23517658_2.fastq.gz,SRR23517658,male,C57BL/6J,Lung,30mo,1,Lung_30mo
+Lung_30mo_br2,SRR23517659_1.fastq.gz,SRR23517659_2.fastq.gz,SRR23517659,male,C57BL/6J,Lung,30mo,2,Lung_30mo
+Lung_30mo_br3,SRR23517660_1.fastq.gz,SRR23517660_2.fastq.gz,SRR23517660,male,C57BL/6J,Lung,30mo,3,Lung_30mo
+Lung_30mo_br4,SRR23517661_1.fastq.gz,SRR23517661_2.fastq.gz,SRR23517661,male,C57BL/6J,Lung,30mo,4,Lung_30mo
+Lung_24mo_br1,SRR23517662_1.fastq.gz,SRR23517662_2.fastq.gz,SRR23517662,male,C57BL/6J,Lung,24mo,1,Lung_24mo
+Lung_24mo_br2,SRR23517663_1.fastq.gz,SRR23517663_2.fastq.gz,SRR23517663,male,C57BL/6J,Lung,24mo,2,Lung_24mo
+Lung_24mo_br3,SRR23517664_1.fastq.gz,SRR23517664_2.fastq.gz,SRR23517664,male,C57BL/6J,Lung,24mo,3,Lung_24mo
+Lung_24mo_br4,SRR23517665_1.fastq.gz,SRR23517665_2.fastq.gz,SRR23517665,male,C57BL/6J,Lung,24mo,4,Lung_24mo
+Lung_15mo_br1,SRR23517666_1.fastq.gz,SRR23517666_2.fastq.gz,SRR23517666,male,C57BL/6J,Lung,15mo,1,Lung_15mo
+Lung_15mo_br2,SRR23517667_1.fastq.gz,SRR23517667_2.fastq.gz,SRR23517667,male,C57BL/6J,Lung,15mo,2,Lung_15mo
+Lung_15mo_br3,SRR23517668_1.fastq.gz,SRR23517668_2.fastq.gz,SRR23517668,male,C57BL/6J,Lung,15mo,3,Lung_15mo
+Lung_15mo_br4,SRR23517669_1.fastq.gz,SRR23517669_2.fastq.gz,SRR23517669,male,C57BL/6J,Lung,15mo,4,Lung_15mo
+Lung_6mo_br1,SRR23517670_1.fastq.gz,SRR23517670_2.fastq.gz,SRR23517670,male,C57BL/6J,Lung,6mo,1,Lung_6mo
+Lung_6mo_br2,SRR23517671_1.fastq.gz,SRR23517671_2.fastq.gz,SRR23517671,male,C57BL/6J,Lung,6mo,2,Lung_6mo
+Lung_6mo_br3,SRR23517672_1.fastq.gz,SRR23517672_2.fastq.gz,SRR23517672,male,C57BL/6J,Lung,6mo,3,Lung_6mo
+Lung_6mo_br4,SRR23517673_1.fastq.gz,SRR23517673_2.fastq.gz,SRR23517673,male,C57BL/6J,Lung,6mo,4,Lung_6mo
+Liver_30mo_br1,SRR23517674_1.fastq.gz,SRR23517674_2.fastq.gz,SRR23517674,male,C57BL/6J,Liver,30mo,1,Liver_30mo
+Liver_30mo_br2,SRR23517675_1.fastq.gz,SRR23517675_2.fastq.gz,SRR23517675,male,C57BL/6J,Liver,30mo,2,Liver_30mo
+Liver_30mo_br3,SRR23517676_1.fastq.gz,SRR23517676_2.fastq.gz,SRR23517676,male,C57BL/6J,Liver,30mo,3,Liver_30mo
+Liver_30mo_br4,SRR23517677_1.fastq.gz,SRR23517677_2.fastq.gz,SRR23517677,male,C57BL/6J,Liver,30mo,4,Liver_30mo
+Liver_24mo_br1,SRR23517678_1.fastq.gz,SRR23517678_2.fastq.gz,SRR23517678,male,C57BL/6J,Liver,24mo,1,Liver_24mo
+Liver_24mo_br2,SRR23517679_1.fastq.gz,SRR23517679_2.fastq.gz,SRR23517679,male,C57BL/6J,Liver,24mo,2,Liver_24mo
+Liver_24mo_br3,SRR23517680_1.fastq.gz,SRR23517680_2.fastq.gz,SRR23517680,male,C57BL/6J,Liver,24mo,3,Liver_24mo
+Liver_24mo_br4,SRR23517681_1.fastq.gz,SRR23517681_2.fastq.gz,SRR23517681,male,C57BL/6J,Liver,24mo,4,Liver_24mo
+Liver_15mo_br1,SRR23517682_1.fastq.gz,SRR23517682_2.fastq.gz,SRR23517682,male,C57BL/6J,Liver,15mo,1,Liver_15mo
+Liver_15mo_br2,SRR23517683_1.fastq.gz,SRR23517683_2.fastq.gz,SRR23517683,male,C57BL/6J,Liver,15mo,2,Liver_15mo
+Liver_15mo_br3,SRR23517684_1.fastq.gz,SRR23517684_2.fastq.gz,SRR23517684,male,C57BL/6J,Liver,15mo,3,Liver_15mo
+Liver_15mo_br4,SRR23517685_1.fastq.gz,SRR23517685_2.fastq.gz,SRR23517685,male,C57BL/6J,Liver,15mo,4,Liver_15mo
+Liver_6mo_br1,SRR23517686_1.fastq.gz,SRR23517686_2.fastq.gz,SRR23517686,male,C57BL/6J,Liver,6mo,1,Liver_6mo
+Liver_6mo_br2,SRR23517687_1.fastq.gz,SRR23517687_2.fastq.gz,SRR23517687,male,C57BL/6J,Liver,6mo,2,Liver_6mo
+Liver_6mo_br3,SRR23517688_1.fastq.gz,SRR23517688_2.fastq.gz,SRR23517688,male,C57BL/6J,Liver,6mo,3,Liver_6mo
+Liver_6mo_br4,SRR23517689_1.fastq.gz,SRR23517689_2.fastq.gz,SRR23517689,male,C57BL/6J,Liver,6mo,4,Liver_6mo
+
 ```
 
-### metadata_sub1M.csv
+### metadata_subset_6mo.csv
 
-This file contains the metadata referencing the 1M sub-sampled dataset
+This file contains the metadata referencing the samples from 6 month old mice.
 
-```sh
-samplename,fq1,fq2,srr_id,ecotype,genotype,treatment,tissue,biorep
-mir163_1,SRR24016000_sub1M_1.fastq.gz,SRR24016000_sub1M_2.fastq.gz,SRR24016000_sub1M,Col-0,miR163_mut,7-day-old seedlings without treatment,seedlings,1
-mir163_2,SRR24016001_sub1M_1.fastq.gz,SRR24016001_sub1M_2.fastq.gz,SRR24016001_sub1M,Col-0,miR163_mut,7-day-old seedlings without treatment,seedlings,2
-mir163_3,SRR24016002_sub1M_1.fastq.gz,SRR24016002_sub1M_2.fastq.gz,SRR24016002_sub1M,Col-0,miR163_mut,7-day-old seedlings without treatment,seedlings,3
-wt_1,SRR24016003_sub1M_1.fastq.gz,SRR24016003_sub1M_2.fastq.gz,SRR24016003_sub1M,Col-0,wt,7-day-old seedlings without treatment,seedlings,1
-wt_2,SRR24016004_sub1M_1.fastq.gz,SRR24016004_sub1M_2.fastq.gz,SRR24016004_sub1M,Col-0,wt,7-day-old seedlings without treatment,seedlings,2
-wt_3,SRR24016005_sub1M_1.fastq.gz,SRR24016005_sub1M_2.fastq.gz,SRR24016005_sub1M,Col-0,wt,7-day-old seedlings without treatment,seedlings,3
+``` sh
+samplename,fq1,fq2,srr_id,sex,strain,organ,age,biorep,factor
+Skin_6mo_br1,SRR23517590_1.fastq.gz,SRR23517590_2.fastq.gz,SRR23517590,male,C57BL/6J,Skin,6mo,1,Skin_6mo
+Skin_6mo_br2,SRR23517591_1.fastq.gz,SRR23517591_2.fastq.gz,SRR23517591,male,C57BL/6J,Skin,6mo,2,Skin_6mo
+Skin_6mo_br3,SRR23517592_1.fastq.gz,SRR23517592_2.fastq.gz,SRR23517592,male,C57BL/6J,Skin,6mo,3,Skin_6mo
+Skin_6mo_br4,SRR23517593_1.fastq.gz,SRR23517593_2.fastq.gz,SRR23517593,male,C57BL/6J,Skin,6mo,4,Skin_6mo
+Kidney_6mo_br1,SRR23517606_1.fastq.gz,SRR23517606_2.fastq.gz,SRR23517606,male,C57BL/6J,Kidney,6mo,1,Kidney_6mo
+Kidney_6mo_br2,SRR23517607_1.fastq.gz,SRR23517607_2.fastq.gz,SRR23517607,male,C57BL/6J,Kidney,6mo,2,Kidney_6mo
+Kidney_6mo_br3,SRR23517608_1.fastq.gz,SRR23517608_2.fastq.gz,SRR23517608,male,C57BL/6J,Kidney,6mo,3,Kidney_6mo
+Kidney_6mo_br4,SRR23517609_1.fastq.gz,SRR23517609_2.fastq.gz,SRR23517609,male,C57BL/6J,Kidney,6mo,4,Kidney_6mo
+Heart_6mo_br1,SRR23517622_1.fastq.gz,SRR23517622_2.fastq.gz,SRR23517622,male,C57BL/6J,Heart,6mo,1,Heart_6mo
+Heart_6mo_br2,SRR23517623_1.fastq.gz,SRR23517623_2.fastq.gz,SRR23517623,male,C57BL/6J,Heart,6mo,2,Heart_6mo
+Heart_6mo_br3,SRR23517624_1.fastq.gz,SRR23517624_2.fastq.gz,SRR23517624,male,C57BL/6J,Heart,6mo,3,Heart_6mo
+Heart_6mo_br4,SRR23517625_1.fastq.gz,SRR23517625_2.fastq.gz,SRR23517625,male,C57BL/6J,Heart,6mo,4,Heart_6mo
+Brain_6mo_br1,SRR23517638_1.fastq.gz,SRR23517638_2.fastq.gz,SRR23517638,male,C57BL/6J,Brain,6mo,1,Brain_6mo
+Brain_6mo_br2,SRR23517639_1.fastq.gz,SRR23517639_2.fastq.gz,SRR23517639,male,C57BL/6J,Brain,6mo,2,Brain_6mo
+Brain_6mo_br3,SRR23517640_1.fastq.gz,SRR23517640_2.fastq.gz,SRR23517640,male,C57BL/6J,Brain,6mo,3,Brain_6mo
+Brain_6mo_br4,SRR23517641_1.fastq.gz,SRR23517641_2.fastq.gz,SRR23517641,male,C57BL/6J,Brain,6mo,4,Brain_6mo
+Muscle_6mo_br1,SRR23517654_1.fastq.gz,SRR23517654_2.fastq.gz,SRR23517654,male,C57BL/6J,Muscle,6mo,1,Muscle_6mo
+Muscle_6mo_br2,SRR23517655_1.fastq.gz,SRR23517655_2.fastq.gz,SRR23517655,male,C57BL/6J,Muscle,6mo,2,Muscle_6mo
+Muscle_6mo_br3,SRR23517656_1.fastq.gz,SRR23517656_2.fastq.gz,SRR23517656,male,C57BL/6J,Muscle,6mo,3,Muscle_6mo
+Muscle_6mo_br4,SRR23517657_1.fastq.gz,SRR23517657_2.fastq.gz,SRR23517657,male,C57BL/6J,Muscle,6mo,4,Muscle_6mo
+Lung_6mo_br1,SRR23517670_1.fastq.gz,SRR23517670_2.fastq.gz,SRR23517670,male,C57BL/6J,Lung,6mo,1,Lung_6mo
+Lung_6mo_br2,SRR23517671_1.fastq.gz,SRR23517671_2.fastq.gz,SRR23517671,male,C57BL/6J,Lung,6mo,2,Lung_6mo
+Lung_6mo_br3,SRR23517672_1.fastq.gz,SRR23517672_2.fastq.gz,SRR23517672,male,C57BL/6J,Lung,6mo,3,Lung_6mo
+Lung_6mo_br4,SRR23517673_1.fastq.gz,SRR23517673_2.fastq.gz,SRR23517673,male,C57BL/6J,Lung,6mo,4,Lung_6mo
+Liver_6mo_br1,SRR23517686_1.fastq.gz,SRR23517686_2.fastq.gz,SRR23517686,male,C57BL/6J,Liver,6mo,1,Liver_6mo
+Liver_6mo_br2,SRR23517687_1.fastq.gz,SRR23517687_2.fastq.gz,SRR23517687,male,C57BL/6J,Liver,6mo,2,Liver_6mo
+Liver_6mo_br3,SRR23517688_1.fastq.gz,SRR23517688_2.fastq.gz,SRR23517688,male,C57BL/6J,Liver,6mo,3,Liver_6mo
+Liver_6mo_br4,SRR23517689_1.fastq.gz,SRR23517689_2.fastq.gz,SRR23517689,male,C57BL/6J,Liver,6mo,4,Liver_6mo
 ```
 :::
 
 ## Examining the raw data (FASTQ) {.smaller}
 
-Fastq files contain the raw sequence and the base quality score. 
-Each sequence is comprised of four lines.
+Fastq files contain the raw sequence and the base quality score. Each sequence is comprised of four lines.
 
-<br>
-Description for each line
-```sh
+<br> Description for each line
+
+``` sh
 The sequence header (starts with @) and contain identifiers for the read
 The sequence
 '+'
 Base quality scores 
 ```
 
-```{.sh eval=FALSE code-line-numbers="|1,5,9,13|2,6,10,14|3,7,11,15|4,8,12,16"}
+``` {.sh eval="FALSE" code-line-numbers="|1,5,9,13|2,6,10,14|3,7,11,15|4,8,12,16"}
 @VH01192:45:AAC7JMMM5:1:1101:19973:1000 1:N:0:AGTTCAGG+TCTGTTGG
 NATGGGACAGACATGCTGGCGGCACTCACTCACTTGGGCGGCTTAGATCGGAAGAGCACACGTCTGAACTCCAGTCACAGTTCAGGATCTCGTATTCCCTTTTTTTTTTGTAAATTTTTGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
 +
@@ -381,17 +502,14 @@ NCCTCAAAAAAAAAAAAAAAAAAAAAAAAAATTTGGTATGTGAAATTTTTTTAATACATTTAAATTTTATGTTTTTGTTT
 ```
 
 ## Exploring the FASTQ file header {.smaller}
-<br>
-Sample header: 
-<br>
-@VH01192:45:AAC7JMMM5:1:1101:19973:1000 1:N:0:AGTTCAGG+TCTGTTGG
-<br>
 
-:::: {.columns}
+<br> Sample header: <br> @VH01192:45:AAC7JMMM5:1:1101:19973:1000 1:N:0:AGTTCAGG+TCTGTTGG <br>
 
+::::: columns
 ::: {.column width="40%"}
 Header Value
-```sh
+
+``` sh
 VH01192
 45
 AAC7JMMM5
@@ -408,7 +526,8 @@ AGTTCAGG+TCTGTTGG
 
 ::: {.column width="60%"}
 Header Description
-```sh
+
+``` sh
 unique instrument id
 run id
 flowcell id
@@ -422,117 +541,63 @@ Y if the read is filtered, N otherwise
 Index sequence
 ```
 :::
- 
-::::
+:::::
 
 ## Sequence Quality Control (QC) {.smaller}
-<br>
-We will run QC on the raw data using `fastqc` and `trim_galore`. 
+
+<br> We will run QC on the raw data using `fastqc` and `trim_galore`.
+
+<br> `fastqc` will generate stats of the raw reads including:
+
+-   Base quality score distribution
+-   GC content
+-   Sequence duplication
+
+<br> `trim_galore` will remove adapters in the sequence and can remove N bases or bases with low quality score. `trim_galore` will also run `fastqc` on the trimmed dataset.
 
 <br>
-`fastqc` will generate stats of the raw reads including:
 
-  -  Base quality score distribution
-  -  GC content
-  -  Sequence duplication
-
-<br>
-`trim_galore` will remove adapters in the sequence and can remove N bases or bases with low quality score. `trim_galore` will also run `fastqc` on the trimmed dataset.
-
-<br>
-
-::: {.panel-tabset}
-
+::: panel-tabset
 ### Fastqc Output
 
 [Good data example](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/good_sequence_short_fastqc.html)
 
 [Bad data example](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.html)
 
-```sh
+``` sh
 $ ls analysis/fastqc
-SRR24016000_sub1M_1_fastqc.html
-SRR24016000_sub1M_1_fastqc.zip
-SRR24016000_sub1M_2_fastqc.html
-SRR24016000_sub1M_2_fastqc.zip
-SRR24016001_sub1M_1_fastqc.html
-SRR24016001_sub1M_1_fastqc.zip
-SRR24016001_sub1M_2_fastqc.html
-SRR24016001_sub1M_2_fastqc.zip
-SRR24016002_sub1M_1_fastqc.html
-SRR24016002_sub1M_1_fastqc.zip
-SRR24016002_sub1M_2_fastqc.html
-SRR24016002_sub1M_2_fastqc.zip
-SRR24016003_sub1M_1_fastqc.html
-SRR24016003_sub1M_1_fastqc.zip
-SRR24016003_sub1M_2_fastqc.html
-SRR24016003_sub1M_2_fastqc.zip
-SRR24016004_sub1M_1_fastqc.html
-SRR24016004_sub1M_1_fastqc.zip
-SRR24016004_sub1M_2_fastqc.html
-SRR24016004_sub1M_2_fastqc.zip
-SRR24016005_sub1M_1_fastqc.html
-SRR24016005_sub1M_1_fastqc.zip
-SRR24016005_sub1M_2_fastqc.html
-SRR24016005_sub1M_2_fastqc.zip
+SRR23517590_1_fastqc.html
+SRR23517590_1_fastqc.zip
+SRR23517590_2_fastqc.html
+SRR23517590_2_fastqc.zip
+SRR23517591_1_fastqc.html
+SRR23517591_1_fastqc.zip
+SRR23517591_2_fastqc.html
+SRR23517591_2_fastqc.zip
+SRR23517592_1_fastqc.html
+SRR23517592_1_fastqc.zip
+SRR23517592_2_fastqc.html
 ```
 
 ### Trim_galore Output
 
 The **'val_1'** and **'val_2'** files are the validated files after `trim_galore` processing. These files will be the input for the `STAR` alignment.
 
-```sh
+``` sh
 $ ls analysis/trim_galore
-mir163_1_val_1_fastqc.html
-mir163_1_val_1_fastqc.zip
-mir163_1_val_1.fq.gz
-mir163_1_val_2_fastqc.html
-mir163_1_val_2_fastqc.zip
-mir163_1_val_2.fq.gz
-mir163_2_val_1_fastqc.html
-mir163_2_val_1_fastqc.zip
-mir163_2_val_1.fq.gz
-mir163_2_val_2_fastqc.html
-mir163_2_val_2_fastqc.zip
-mir163_2_val_2.fq.gz
-mir163_3_val_1_fastqc.html
-mir163_3_val_1_fastqc.zip
-mir163_3_val_1.fq.gz
-mir163_3_val_2_fastqc.html
-mir163_3_val_2_fastqc.zip
-mir163_3_val_2.fq.gz
-SRR24016000_sub1M_1.fastq.gz_trimming_report.txt
-SRR24016000_sub1M_2.fastq.gz_trimming_report.txt
-SRR24016001_sub1M_1.fastq.gz_trimming_report.txt
-SRR24016001_sub1M_2.fastq.gz_trimming_report.txt
-SRR24016002_sub1M_1.fastq.gz_trimming_report.txt
-SRR24016002_sub1M_2.fastq.gz_trimming_report.txt
-SRR24016003_sub1M_1.fastq.gz_trimming_report.txt
-SRR24016003_sub1M_2.fastq.gz_trimming_report.txt
-SRR24016004_sub1M_1.fastq.gz_trimming_report.txt
-SRR24016004_sub1M_2.fastq.gz_trimming_report.txt
-SRR24016005_sub1M_1.fastq.gz_trimming_report.txt
-SRR24016005_sub1M_2.fastq.gz_trimming_report.txt
-wt_1_val_1_fastqc.html
-wt_1_val_1_fastqc.zip
-wt_1_val_1.fq.gz
-wt_1_val_2_fastqc.html
-wt_1_val_2_fastqc.zip
-wt_1_val_2.fq.gz
-wt_2_val_1_fastqc.html
-wt_2_val_1_fastqc.zip
-wt_2_val_1.fq.gz
-wt_2_val_2_fastqc.html
-wt_2_val_2_fastqc.zip
-wt_2_val_2.fq.gz
-wt_3_val_1_fastqc.html
-wt_3_val_1_fastqc.zip
-wt_3_val_1.fq.gz
-wt_3_val_2_fastqc.html
-wt_3_val_2_fastqc.zip
-wt_3_val_2.fq.gz
+Brain_6mo_br1_val_1_fastqc.html
+Brain_6mo_br1_val_1_fastqc.zip
+Brain_6mo_br1_val_1.fq.gz
+Brain_6mo_br1_val_2_fastqc.html
+Brain_6mo_br1_val_2_fastqc.zip
+Brain_6mo_br1_val_2.fq.gz
+Brain_6mo_br2_val_1_fastqc.html
+Brain_6mo_br2_val_1_fastqc.zip
+Brain_6mo_br2_val_1.fq.gz
+Brain_6mo_br2_val_2_fastqc.html
+Brain_6mo_br2_val_2_fastqc.zip
+Brain_6mo_br2_val_2.fq.gz
 ```
-
 :::
 
 ## Building an index for the reference genome {.smaller}
@@ -541,76 +606,47 @@ To run the STAR aligner, we first need to create an index of the genome.
 
 To generate an index, you'll need the following files:
 
-- FASTA: Fasta file containing sequences of all the chromosomes/scaffolds for the genome
-- GTF/GFF: General Transfer Format (GTF) or General Feature Format (GFF)
+-   FASTA: Fasta file containing sequences of all the chromosomes/scaffolds for the genome
+-   GTF/GFF: General Transfer Format (GTF) or General Feature Format (GFF)
 
-::: {.callout-note}
+::: callout-note
 You only need to run the indexing step once. The indexed files can be used for alignments for all subsequent samples
 :::
 
-::: {.callout-warning}
+::: callout-warning
 For assembled genomes containing large number of scaffolds or large genomes, this process can take some time and may require adjusting the indexing parameters.
 :::
 
-
-::: {.panel-tabset}
-
+::: panel-tabset
 ### Fasta File
 
-```sh
->Chr1 CHROMOSOME dumped from ADB: Jun/20/09 14:53; last updated: 2009-02-02
-CCCTAAACCCTAAACCCTAAACCCTAAACCTCTGAATCCTTAATCCCTAAATCCCTAAATCTTTAAATCCTACATCCAT
-GAATCCCTAAATACCTAATTCCCTAAACCCGAAACCGGTTTCTCTGGTTGAAAATCATTGTGTATATAATGATAATTTT
-ATCGTTTTTATGTAATTGCTTATTGTTGTGTGTAGATTTTTTAAAAATATCATTTGAGGTCAATACAAATCCTATTTCT
-TGTGGTTTTCTTTCCTTCACTTAGCTATGGATGGTTTATCTTCATTTGTTATATTGGATACAAGCTTTGCTACGATCTA
-CATTTGGGAATGTGAGTCTCTTATTGTAACCTTAGGGTTGGTTTATCTCAAGAATCTTATTAATTGTTTGGACTGTTTA
-TGTTTGGACATTTATTGTCATTCTTACTCCTTTGTGGAAATGTTTGTTCTATCAATTTATCTTTTGTGGGAAAATTATT
-TAGTTGTAGGGATGAAGTCTTTCTTCGTTGTTGTTACGCTTGTCATCTCATCTCTCAATGATATGGGATGGTCCTTTAG
+``` sh
+>chr1
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
 ```
+
 ### GTF File
 
-```{.sh eval=False code-line-numbers="|1-16"}
-Chr1    Araport11       5UTR    3631    3759    .       +       .       transcript_id "AT1G01010.1"; gene_id "AT1G01010"
-Chr1    Araport11       exon    3631    3913    .       +       .       transcript_id "AT1G01010.1"; gene_id "AT1G01010"
-Chr1    Araport11       start_codon     3760    3762    .       +       .       transcript_id "AT1G01010.1"; gene_id "AT1G01010"
-Chr1    Araport11       CDS     3760    3913    .       +       0       transcript_id "AT1G01010.1"; gene_id "AT1G01010"
-Chr1    Araport11       exon    3996    4276    .       +       .       transcript_id "AT1G01010.1"; gene_id "AT1G01010"
-Chr1    Araport11       CDS     3996    4276    .       +       2       transcript_id "AT1G01010.1"; gene_id "AT1G01010"
-Chr1    Araport11       exon    4486    4605    .       +       .       transcript_id "AT1G01010.1"; gene_id "AT1G01010"
-Chr1    Araport11       CDS     4486    4605    .       +       0       transcript_id "AT1G01010.1"; gene_id "AT1G01010"
-Chr1    Araport11       exon    4706    5095    .       +       .       transcript_id "AT1G01010.1"; gene_id "AT1G01010"
-Chr1    Araport11       CDS     4706    5095    .       +       0       transcript_id "AT1G01010.1"; gene_id "AT1G01010"
-Chr1    Araport11       exon    5174    5326    .       +       .       transcript_id "AT1G01010.1"; gene_id "AT1G01010"
-Chr1    Araport11       CDS     5174    5326    .       +       0       transcript_id "AT1G01010.1"; gene_id "AT1G01010"
-Chr1    Araport11       CDS     5439    5630    .       +       0       transcript_id "AT1G01010.1"; gene_id "AT1G01010"
-Chr1    Araport11       exon    5439    5899    .       +       .       transcript_id "AT1G01010.1"; gene_id "AT1G01010"
-Chr1    Araport11       stop_codon      5628    5630    .       +       .       transcript_id "AT1G01010.1"; gene_id "AT1G01010"
-Chr1    Araport11       3UTR    5631    5899    .       +       .       transcript_id "AT1G01010.1"; gene_id "AT1G01010"
-Chr1    Araport11       exon    6788    7069    .       -       .       transcript_id "AT1G01020.2"; gene_id "AT1G01020"
-Chr1    Araport11       3UTR    6788    7069    .       -       .       transcript_id "AT1G01020.2"; gene_id "AT1G01020"
-Chr1    Araport11       3UTR    7157    7314    .       -       .       transcript_id "AT1G01020.2"; gene_id "AT1G01020"
-```
-
-### GFF File
-
-```sh
-##gff-version   3
-Chr1    Araport11       gene    3631    5899    .       +       .       ID=AT1G01010;Name=AT1G01010;Note=NAC domain containing protein 1;symbol=NAC001;Alias=ANAC001,NAC domain containing protein 1;full_name=NAC domain containing protein 1;computational_description=NAC domain containing protein 1 (NAC001)%3B FUNCTIONS IN: sequence-specific DNA binding transcription factor activity%3B INVOLVED IN: multicellular organismal development%2C regulation of transcription%3B LOCATED IN: cellular_component unknown%3B EXPRESSED IN: 7 plant structures%3B EXPRESSED DURING: 4 anthesis%2C C globular stage%2C petal differentiation and expansion stage%3B CONTAINS InterPro DOMAIN/s: No apical meristem (NAM) protein (InterPro:IPR003441)%3B BEST Arabidopsis thaliana protein match is: NAC domain containing protein 69 (TAIR:AT4G01550.1)%3B Has 2503 Blast hits to 2496 proteins in 69 species: Archae - 0%3B Bacteria - 0%3B Metazoa - 0%3B Fungi - 0%3B Plants - 2502%3B Viruses - 0%3B Other Eukaryotes - 1 (source: NCBI BLink).;Dbxref=PMID:11118137,PMID:12820902,PMID:15029955,PMID:15010618,PMID:15108305,PMID:15173566,PMID:15282545,PMID:16504176,PMID:16547105,PMID:16524982,PMID:16720694,PMID:16552445,PMID:17339215,PMID:17448460,PMID:17447913,PMID:18650403,PMID:20736450,PMID:24377444,locus:2200935;locus_type=protein_coding
-Chr1    Araport11       mRNA    3631    5899    .       +       .       ID=AT1G01010.1;Parent=AT1G01010;Name=AT1G01010.1;Note=NAC domain containing protein 1;conf_class=2;symbol=NAC001;Alias=ANAC001,NAC domain containing protein 1;full_name=NAC domain containing protein 1;computational_description=NAC domain containing protein 1 (NAC001)%3B FUNCTIONS IN: sequence-specific DNA binding transcription factor activity%3B INVOLVED IN: multicellular organismal development%2C regulation of transcription%3B LOCATED IN: cellular_component unknown%3B EXPRESSED IN: 7 plant structures%3B EXPRESSED DURING: 4 anthesis%2C C globular stage%2C petal differentiation and expansion stage%3B CONTAINS InterPro DOMAIN/s: No apical meristem (NAM) protein (InterPro:IPR003441)%3B BEST Arabidopsis thaliana protein match is: NAC domain containing protein 69 (TAIR:AT4G01550.1)%3B Has 2503 Blast hits to 2496 proteins in 69 species: Archae - 0%3B Bacteria - 0%3B Metazoa - 0%3B Fungi - 0%3B Plants - 2502%3B Viruses - 0%3B Other Eukaryotes - 1 (source: NCBI BLink).;conf_rating=****;Dbxref=PMID:11118137,gene:2200934,UniProt:Q0WV96
-Chr1    Araport11       five_prime_UTR  3631    3759    .       +       .       ID=AT1G01010:five_prime_UTR:1;Parent=AT1G01010.1;Name=NAC001:five_prime_UTR:1
-Chr1    Araport11       exon    3631    3913    .       +       .       ID=AT1G01010:exon:1;Parent=AT1G01010.1;Name=NAC001:exon:1
-Chr1    Araport11       CDS     3760    3913    .       +       0       ID=AT1G01010:CDS:1;Parent=AT1G01010.1;Name=NAC001:CDS:1
-Chr1    Araport11       exon    3996    4276    .       +       .       ID=AT1G01010:exon:2;Parent=AT1G01010.1;Name=NAC001:exon:2
-Chr1    Araport11       CDS     3996    4276    .       +       2       ID=AT1G01010:CDS:2;Parent=AT1G01010.1;Name=NAC001:CDS:2
-Chr1    Araport11       exon    4486    4605    .       +       .       ID=AT1G01010:exon:3;Parent=AT1G01010.1;Name=NAC001:exon:3
-Chr1    Araport11       CDS     4486    4605    .       +       0       ID=AT1G01010:CDS:3;Parent=AT1G01010.1;Name=NAC001:CDS:3
-Chr1    Araport11       exon    4706    5095    .       +       .       ID=AT1G01010:exon:4;Parent=AT1G01010.1;Name=NAC001:exon:4
-Chr1    Araport11       CDS     4706    5095    .       +       0       ID=AT1G01010:CDS:4;Parent=AT1G01010.1;Name=NAC001:CDS:4
-Chr1    Araport11       exon    5174    5326    .       +       .       ID=AT1G01010:exon:5;Parent=AT1G01010.1;Name=NAC001:exon:5
-Chr1    Araport11       CDS     5174    5326    .       +       0       ID=AT1G01010:CDS:5;Parent=AT1G01010.1;Name=NAC001:CDS:5
-Chr1    Araport11       CDS     5439    5630    .       +       0       ID=AT1G01010:CDS:6;Parent=AT1G01010.1;Name=NAC001:CDS:6
-Chr1    Araport11       exon    5439    5899    .       +       .       ID=AT1G01010:exon:6;Parent=AT1G01010.1;Name=NAC001:exon:6
-Chr1    Araport11       three_prime_UTR 5631    5899    .       +       .       ID=AT1G01010:three_prime_UTR:1;Parent=AT1G01010.1;Name=NAC001:three_prime_UTR:1
+``` {.sh eval="False" code-line-numbers="|1-16"}
+chrM    ncbiRefSeq.2020-10-27   transcript      15356   15422   .       -       .       gene_id "TrnP"; transcript_id "rna-TrnP";  gene_name "TrnP";
+chrM    ncbiRefSeq.2020-10-27   exon    15356   15422   .       -       .       gene_id "TrnP"; transcript_id "rna-TrnP"; exon_number "1"; exon_id "rna-TrnP.1"; gene_name "TrnP";
+chrM    ncbiRefSeq.2020-10-27   transcript      15289   15355   .       +       .       gene_id "TrnT"; transcript_id "rna-TrnT";  gene_name "TrnT";
+chrM    ncbiRefSeq.2020-10-27   exon    15289   15355   .       +       .       gene_id "TrnT"; transcript_id "rna-TrnT"; exon_number "1"; exon_id "rna-TrnT.1"; gene_name "TrnT";
+chrM    ncbiRefSeq.2020-10-27   transcript      14145   15288   .       +       .       gene_id "CYTB"; transcript_id "NP_904340.1";  gene_name "CYTB";
+chrM    ncbiRefSeq.2020-10-27   exon    14145   15288   .       +       .       gene_id "CYTB"; transcript_id "NP_904340.1"; exon_number "1"; exon_id "NP_904340.1.1"; gene_name "CYTB";
+chrM    ncbiRefSeq.2020-10-27   CDS     14145   15288   .       +       0       gene_id "CYTB"; transcript_id "NP_904340.1"; exon_number "1"; exon_id "NP_904340.1.1"; gene_name "CYTB";
+chrM    ncbiRefSeq.2020-10-27   start_codon     14145   14147   .       +       0       gene_id "CYTB"; transcript_id "NP_904340.1"; exon_number "1"; exon_id "NP_904340.1.1"; gene_name "CYTB";
 ```
 :::
 
@@ -618,64 +654,69 @@ Chr1    Araport11       three_prime_UTR 5631    5899    .       +       .       
 
 Now we can align the reads from each sample to the indexed reference genome.
 
-Depending on the sequencing depth, this step can take some time. 
+Depending on the sequencing depth, this step can take some time.
 
-::: {.panel-tabset}
-
+::: panel-tabset
 ### Output
 
-```{.sh eval=false code-line-numbers="|2-3|4"}
+``` {.sh eval="false" code-line-numbers="|2-3|4"}
 $ ls analysis/star
-wt_1_Aligned.sortedByCoord.out.bam
-wt_1_Aligned.sortedByCoord.out.bam.bai
-wt_1_Log.final.out
-wt_1_Log.out
-wt_1_Log.progress.out
-wt_1_ReadsPerGene.out.tab
-wt_1_Signal.UniqueMultiple.str1.out.wig
-wt_1_Signal.UniqueMultiple.str2.out.wig
-wt_1_Signal.Unique.str1.out.wig
-wt_1_Signal.Unique.str2.out.wig
-wt_1_SJ.out.tab
+Skin_6mo_br1_Aligned.sortedByCoord.out.bam
+Skin_6mo_br1_Aligned.sortedByCoord.out.bam.bai
+Skin_6mo_br1.bw
+Skin_6mo_br1_Log.final.out
+Skin_6mo_br1_Log.out
+Skin_6mo_br1_Log.progress.out
+Skin_6mo_br1_ReadsPerGene.out.tab
+Skin_6mo_br1_Signal.UniqueMultiple.str1.out.wig
+Skin_6mo_br1_Signal.UniqueMultiple.str2.out.wig
+Skin_6mo_br1_Signal.Unique.str1.out.wig
+Skin_6mo_br1_Signal.Unique.str2.out.wig
+Skin_6mo_br1_SJ.out.tab
+Skin_6mo_br2_Aligned.sortedByCoord.out.bam
+Skin_6mo_br2_Log.out
+Skin_6mo_br2_Log.progress.out
+Skin_6mo_br2__STARtmp
 ```
+
 ### Log file (Log.final.out)
 
-```{.sh eval=false code-line-numbers="|7-8|10-11"}
+``` {.sh eval="false" code-line-numbers="|7-8|10-11"}
 $ less analysis/star/wt_1_Log.final.out
-                                 Started job on |       Oct 27 15:12:05
-                             Started mapping on |       Oct 27 15:12:05
-                                    Finished on |       Oct 27 15:13:29
-       Mapping speed, Million of reads per hour |       42.77
+Started job on |       Dec 10 21:54:39
+                             Started mapping on |       Dec 10 21:54:53
+                                    Finished on |       Dec 10 22:49:04
+       Mapping speed, Million of reads per hour |       17.08
 
-                          Number of input reads |       997854
-                      Average input read length |       297
+                          Number of input reads |       15426551
+                      Average input read length |       267
                                     UNIQUE READS:
-                   Uniquely mapped reads number |       939014
-                        Uniquely mapped reads % |       94.10%
-                          Average mapped length |       291.73
-                       Number of splices: Total |       904715
-            Number of splices: Annotated (sjdb) |       0
-                       Number of splices: GT/AG |       894390
-                       Number of splices: GC/AG |       8458
-                       Number of splices: AT/AC |       419
-               Number of splices: Non-canonical |       1448
-                      Mismatch rate per base, % |       0.00%
-                         Deletion rate per base |       0.00%
-                        Deletion average length |       1.50
+                   Uniquely mapped reads number |       12718109
+                        Uniquely mapped reads % |       82.44%
+                          Average mapped length |       260.81
+                       Number of splices: Total |       9531195
+            Number of splices: Annotated (sjdb) |       9457319
+                       Number of splices: GT/AG |       9437998
+                       Number of splices: GC/AG |       73455
+                       Number of splices: AT/AC |       5941
+               Number of splices: Non-canonical |       13801
+                      Mismatch rate per base, % |       0.20%
+                         Deletion rate per base |       0.01%
+                        Deletion average length |       2.02
                         Insertion rate per base |       0.00%
-                       Insertion average length |       1.21
+                       Insertion average length |       1.32
                              MULTI-MAPPING READS:
         Number of reads mapped to multiple loci |       0
              % of reads mapped to multiple loci |       0.00%
-        Number of reads mapped to too many loci |       18952
-             % of reads mapped to too many loci |       1.90%
+        Number of reads mapped to too many loci |       1717783
+             % of reads mapped to too many loci |       11.14%
                                   UNMAPPED READS:
   Number of reads unmapped: too many mismatches |       0
        % of reads unmapped: too many mismatches |       0.00%
-            Number of reads unmapped: too short |       39869
-                 % of reads unmapped: too short |       4.00%
-                Number of reads unmapped: other |       19
-                     % of reads unmapped: other |       0.00%
+            Number of reads unmapped: too short |       979911
+                 % of reads unmapped: too short |       6.35%
+                Number of reads unmapped: other |       10748
+                     % of reads unmapped: other |       0.07%
                                   CHIMERIC READS:
                        Number of chimeric reads |       0
                             % of chimeric reads |       0.00%
@@ -684,37 +725,102 @@ $ less analysis/star/wt_1_Log.final.out
 
 ## Anatomy of the alignment file {.smaller}
 
-The alignment information are stored in a sequence alignment map (SAM) file. This file can be large depending on the number of sequenced reads. Therefore, SAM files are generally converted to a BAM (binary compressed version of SAM) file to reduce storage space but requires software (e.g., `samtools`) in order to see the file content. 
+The alignment information are stored in a sequence alignment map (SAM) file. This file can be large depending on the number of sequenced reads. Therefore, SAM files are generally converted to a BAM (binary compressed version of SAM) file to reduce storage space but requires software (e.g., `samtools`) in order to see the file content.
 
-<br>
-Sequence alignment map (SAM) format official documentation is available [here](http://samtools.github.io/hts-specs/SAMv1.pdf). The SAM file consists of header rows and rows for each read. Each row contains 11 mandatory fields. 
+<br> Sequence alignment map (SAM) format official documentation is available [here](http://samtools.github.io/hts-specs/SAMv1.pdf). The SAM file consists of header rows and rows for each read. Each row contains 11 mandatory fields.
 
-```{.sh eval=False code-line-numbers="|1-11|12-17"}
+``` {.sh eval="False" code-line-numbers="|1-11|63-68"}
 @HD     VN:1.4  SO:coordinate
-@SQ     SN:Chr1 LN:30427671
-@SQ     SN:Chr2 LN:19698289
-@SQ     SN:Chr3 LN:23459830
-@SQ     SN:Chr4 LN:18585056
-@SQ     SN:Chr5 LN:26975502
-@SQ     SN:ChrC LN:154478
-@SQ     SN:ChrM LN:366924
-@PG     ID:STAR PN:STAR VN:2.7.9a       CL:STAR   --runMode alignReads      --runThreadN 16   --genomeDir index   --readFilesIn analysis/trim_galore/wt_1_val_1.fq.gz   analysis/trim_galore/wt_1_val_2.fq.gz      --readFilesCommand zcat      --outFileNamePrefix analysis/star/wt_1_   --outSAMtype BAM   SortedByCoordinate      --outWigType wiggle      --outFilterMultimapNmax 1   --outFilterMismatchNmax 0   --quantMode GeneCounts   
-@PG     ID:samtools     PN:samtools     PP:STAR VN:1.18 CL:samtools view -h ../demo_files/analysis/star/wt_1_Aligned.sortedByCoord.out.bam
-@CO     user command line: STAR --runThreadN 16 --runMode alignReads --genomeDir index --readFilesCommand zcat --outSAMtype BAM SortedByCoordinate --outFileNamePrefix analysis/star/wt_1_ --outFilterMismatchNmax 0 --outFilterMultimapNmax 1 --quantMode GeneCounts --outWigType wiggle --readFilesIn analysis/trim_galore/wt_1_val_1.fq.gz analysis/trim_galore/wt_1_val_2.fq.gz
-A00738:657:H72KHDSX7:1:2513:31566:1110  163     chr01   2960    255     150M    =       3065    254     CACCCACAGGCACCACCGTCCTTGTTGGTAATGAAGAAGACGAGACGACGACTTCCCCACTAGGAAACACGACGGAGGCGGAGATGATCGACGGCGGAGAGAGCTACAGAAACATCGATGCCTCCTGTCCAATCCCCCCATCCCATTCGG  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF  NH:i:1  HI:i:1  AS:i:297        nM:i:0
-A00738:657:H72KHDSX7:1:1330:26928:13870 99      chr01   2983    255     149M    =       3071    223     GTTGGTAATGAAGAAGACGAGACGACGACTTCCCCACTAGGAAACACGACGGAGGCGGAGATGATCGACGGCGGAGAGAGCTACAGAAACATCGATGCCTCCTGTCCAATCCCCCCATCCCATTCGGTAGTTGGATTGAAGACTACCGA   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFF   NH:i:1  HI:i:1  AS:i:282        nM:i:0
-A00738:657:H72KHDSX7:1:1159:8594:10551  163     chr01   3001    255     150M    =       3069    218     GAGACGACGACTTCCCCACTAGGAAACACGACGGAGGCGGAGATGATCGACGGCGGAGAGAGCTACAGAAACATCGATGCCTCCTGTCCAATCCCCCCATCCCATTCGGTAGTTGGATTGAAGACTACCGAATAAGAGAAGCAGGCAGGC  FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF  NH:i:1  HI:i:1  AS:i:298        nM:i:0
-A00738:657:H72KHDSX7:1:1640:6551:15311  163     chr01   3006    255     149M    =       3088    232     GACGACTTCCCCACTAGGAAACACGACGGAGGCGGAGATGATCGACGGCGGAGAGAGCTACAGAAACATCGATGCCTCCTGTCCAATCCCCCCATCCCATTCGGTAGTTGGATTGAAGACTACCGAATAAGAGAAGCAGGCAGGCAGAC   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF   NH:i:1  HI:i:1  AS:i:297        nM:i:0
-A00738:657:H72KHDSX7:1:2574:25084:30937 99      chr01   3007    255     149M    =       3207    448     ACGACTTCCCCACTAGGAAACACGACGGAGGCGGAGATGATCGACGGCGGAGAGAGCTACAGAAACATCGATGCCTCCTGTCCAATCCCCCCATCCCATTCGGTAGTTGGATTGAAGACTACCGAATAAGAGAAGCAGGCAGGCAGACA   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF,FFFFFFFFFFFFFFF:FF   NH:i:1  HI:i:1  AS:i:297        nM:i:0
-A00738:657:H72KHDSX7:1:1327:12717:27023 99      chr01   3008    255     149M    =       3086    227     CGACTTCCCCACTAGGAAACACGACGGAGGCGGAGATGATCGACGGCGGAGAGAGCTACAGAAACATCGATGCCTCCTGTCCAATCCCCCCATCCCATTCGGTAGTTGGATTGAAGACTACCGAATAAGAGAAGCAGGCAGGCAGACAA   FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFFFFFFFFFFFFFF   NH:i:1  HI:i:1  AS:i:296        nM:i:0
+@SQ     SN:chr1 LN:195154279
+@SQ     SN:chr10        LN:130530862
+@SQ     SN:chr11        LN:121973369
+@SQ     SN:chr12        LN:120092757
+@SQ     SN:chr13        LN:120883175
+@SQ     SN:chr14        LN:125139656
+@SQ     SN:chr15        LN:104073951
+@SQ     SN:chr16        LN:98008968
+@SQ     SN:chr17        LN:95294699
+@SQ     SN:chr18        LN:90720763
+@SQ     SN:chr19        LN:61420004
+@SQ     SN:chr1_GL456210v1_random       LN:169725
+@SQ     SN:chr1_GL456211v1_random       LN:241735
+@SQ     SN:chr1_GL456212v1_random       LN:153618
+@SQ     SN:chr1_GL456221v1_random       LN:206961
+@SQ     SN:chr1_MU069434v1_random       LN:8412
+@SQ     SN:chr1_GL456239v1_random       LN:40056
+@SQ     SN:chr2 LN:181755017
+@SQ     SN:chr3 LN:159745316
+@SQ     SN:chr4 LN:156860686
+@SQ     SN:chr4_JH584295v1_random       LN:1976
+@SQ     SN:chr5 LN:151758149
+@SQ     SN:chr5_JH584296v1_random       LN:199368
+@SQ     SN:chr5_JH584297v1_random       LN:205776
+@SQ     SN:chr5_JH584298v1_random       LN:184189
+@SQ     SN:chr5_GL456354v1_random       LN:195993
+@SQ     SN:chr5_JH584299v1_random       LN:953012
+@SQ     SN:chr6 LN:149588044
+@SQ     SN:chr7 LN:144995196
+@SQ     SN:chr7_GL456219v1_random       LN:175968
+@SQ     SN:chr8 LN:130127694
+@SQ     SN:chr9 LN:124359700
+@SQ     SN:chrM LN:16299
+@SQ     SN:chrUn_GL456359v1     LN:22974
+@SQ     SN:chrUn_GL456360v1     LN:31704
+@SQ     SN:chrUn_GL456366v1     LN:47073
+@SQ     SN:chrUn_GL456367v1     LN:42057
+@SQ     SN:chrUn_GL456368v1     LN:20208
+@SQ     SN:chrUn_GL456370v1     LN:26764
+@SQ     SN:chrUn_GL456372v1     LN:28664
+@SQ     SN:chrUn_GL456378v1     LN:31602
+@SQ     SN:chrUn_GL456379v1     LN:72385
+@SQ     SN:chrUn_GL456381v1     LN:25871
+@SQ     SN:chrUn_GL456382v1     LN:23158
+@SQ     SN:chrUn_GL456383v1     LN:38659
+@SQ     SN:chrUn_GL456385v1     LN:35240
+@SQ     SN:chrUn_GL456387v1     LN:24685
+@SQ     SN:chrUn_GL456389v1     LN:28772
+@SQ     SN:chrUn_GL456390v1     LN:24668
+@SQ     SN:chrUn_GL456392v1     LN:23629
+@SQ     SN:chrUn_GL456394v1     LN:24323
+@SQ     SN:chrUn_GL456396v1     LN:21240
+@SQ     SN:chrUn_JH584304v1     LN:114452
+@SQ     SN:chrUn_MU069435v1     LN:31129
+@SQ     SN:chrX LN:169476592
+@SQ     SN:chrX_GL456233v2_random       LN:559103
+@SQ     SN:chrY LN:91455967
+@SQ     SN:chrY_JH584300v1_random       LN:182347
+@SQ     SN:chrY_JH584301v1_random       LN:259875
+@SQ     SN:chrY_JH584302v1_random       LN:155838
+@SQ     SN:chrY_JH584303v1_random       LN:158099
+@PG     ID:STAR PN:STAR VN:2.7.10b      CL:STAR   --runMode alignReads      --runThreadN 8   --genomeDir index/mm39-star   --readFilesIn analysis/trimga
+lore/Brain_6mo_br1_val_1.fq.gz   analysis/trimgalore/Brain_6mo_br1_val_2.fq.gz      --readFilesCommand zcat      --outFileNamePrefix analysis/star/Brain
+_6mo_br1_   --outSAMtype BAM   SortedByCoordinate      --outWigType wiggle      --outFilterMultimapNmax 1   --outFilterMismatchNmax 2   --quantMode Gene
+Counts   
+@PG     ID:samtools     PN:samtools     PP:STAR VN:1.22.1       CL:samtools view -h analysis/star/Brain_6mo_br1_Aligned.sortedByCoord.out.bam
+@CO     user command line: STAR --runThreadN 8 --runMode alignReads --genomeDir index/mm39-star --readFilesCommand zcat --outSAMtype BAM SortedByCoordin
+ate --outFileNamePrefix analysis/star/Brain_6mo_br1_ --outFilterMismatchNmax 2 --outFilterMultimapNmax 1 --quantMode GeneCounts --outWigType wiggle --re
+adFilesIn analysis/trimgalore/Brain_6mo_br1_val_1.fq.gz analysis/trimgalore/Brain_6mo_br1_val_2.fq.gz
+SRR23517638.4811943     99      chr1    3134107 255     1S150M  =       3134145 188     AGCCAGGTCTCTTTTTTGTAATCAATTTTGTTCGCTGTTCTCTAGAAAAAAGACATATTTGCCC
+TCAATCCATATTTTGCTATAGTATATTGAACTGTAGTGTTGCAGACTCCTAACAGAGGAATTATTAGAAGTATTCATGTGGGCTGAA ,FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFFFFFFFFFFFFFFFFFF
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFFFF:FFFFFFFFFFFFFFFFFF:FFFFFFFFFFFFFFFFFFFFF:FFFFF NH:i:1  HI:i:1  AS:i:298        nM:i:0
+SRR23517638.4811943     147     chr1    3134145 255     150M1S  =       3134107 -188    CTCTAGAAAAAAGACATATTTGCCCTCAATCCATATTTTGCTATAGTATATTGAACTGTAGTGT
+TGCAGACTCCTAACAGAGGAATTATTAGAAGTATTCATGTGGGCTGAAGAAAACAATAGGTTCTAGTGAGTGGTTTGCAATTCCTTA FFF,FFFFFFFFF:FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF,FFFFFFFFFFF: NH:i:1  HI:i:1  AS:i:298        nM:i:0
+SRR23517638.4277648     99      chr1    3147363 255     107M20S =       3147363 107     TCTTATATTGTCTCCAGCAAAAGGTGTAGCCCAGATTAAAGGTGTGTTCCACCACACCTTTAAT
+CCCAGATGAAAGGCATAGCCCAGATTAAAGGTGTGTTCCTTAACTCGGAGATTCAATCTTCTA ,:FFFFFFFFFFFFFFFFFFF:FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF NH:i:1  HI:i:1  AS:i:208        nM:i:2
+SRR23517638.4277648     147     chr1    3147363 255     107M20S =       3147363 -107    TCTTATATTGTCTCCAGCAAAAGGTGTAGCCCAGATTAAAGGTGTGTTCCACCACACCTTTAAT
+CCCAGATGAAAGGCATAGCCCAGATTAAAGGTGTGTTCCTTAACTCGGAGATTCAATCTTCTA F,FFFFFFFFFFFFFFFFFFFFF:F:FFFFFFFF:FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:FFF:FFFFF:FFFFFFFF
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF, NH:i:1  HI:i:1  AS:i:208        nM:i:2
 ```
+
 <br>
 
-:::: {.columns}
-
+::::: columns
 ::: {.column width="40%"}
 SAM Header
-```{.sh code-line-numbers="|2|6"}
+
+``` {.sh code-line-numbers="|2|6"}
 A00738:657:H72KHDSX7:1:1327:12717:27023
 99      
 chr01
@@ -732,7 +838,8 @@ NH:i:1  HI:i:1  AS:i:296  nM:i:0
 
 ::: {.column width="60%"}
 Header Description
-```{.sh code-line-numbers="|2|6"}
+
+``` {.sh code-line-numbers="|2|6"}
 Sequence identifier
 SAM FLAG
 Reference sequence name (chromosome/scaffold)
@@ -747,21 +854,17 @@ Base quality
 Optional fields
 ```
 :::
+:::::
 
-::::
+<br> For decoding the SAM Flags, check out this [website](https://broadinstitute.github.io/picard/explain-flags.html) from the Broad Institute.
 
-<br>
-For decoding the SAM Flags, check out this [website](https://broadinstitute.github.io/picard/explain-flags.html) from the Broad Institute.
-
-<br>
-The CIGAR string is a representation of how the read aligned to the reference, including matches, mismatches, deletions, insertions, and splicing. More info on the CIGAR string is available [here](https://timd.one/blog/genomics/cigar.php)
-
+<br> The CIGAR string is a representation of how the read aligned to the reference, including matches, mismatches, deletions, insertions, and splicing. More info on the CIGAR string is available [here](https://timd.one/blog/genomics/cigar.php)
 
 ## (Optional) - Convert BAM to BigWig {.smaller}
 
-The **BAM** file produced from `STAR` contains alignment information that can be viewed in IGV. However, this file can be big and sluggish. One option is to convert the **BAM** file to a smaller **BigWig** format that will allow fast visualization of the results. 
+The **BAM** file produced from `STAR` contains alignment information that can be viewed in IGV. However, this file can be big and sluggish. One option is to convert the **BAM** file to a smaller **BigWig** format that will allow fast visualization of the results.
 
-::: {.callout-note}
+::: callout-note
 The **BigWig** format will aggregate and bin your data across the genome. Therefore, you will lose individual read information. For observing SNPs, you'll want to use the **BAM** files instead.
 :::
 
@@ -773,78 +876,96 @@ After aligning the reads to the genome, we must quantify the total reads associa
 
 <br>
 
-::: {.panel-tabset}
-
+::: panel-tabset
 ### Output
 
-```sh
+``` sh
 # Program:featureCounts v2.0.3; Command:"featureCounts" "-T" "8" "-s" "0" "-a" "genome/Araport11_GFF3_genes_transposons.201606.gtf" "-t" "exon" "-g" "gene_id" "--primary" "-o" "analysis/featurecounts/mir163_1.fcnts.txt" "-p" "--countReadPairs" "analysis/star/mir163_1_Aligned.sortedByCoord.out.bam" 
-Geneid  Chr     Start   End     Strand  Length  analysis/star/mir163_1_Aligned.sortedByCoord.out.bam
-AT1G01010       Chr1;Chr1;Chr1;Chr1;Chr1;Chr1   3631;3996;4486;4706;5174;5439   3913;4276;4605;5095;5326;5899   +;+;+;+;+;+     1688    6
-AT1G01020       Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1 6788;6788;6788;6788;6788;6788;7157;7157;7157;7157;7157;7157;7384;7384;7384;7384;7564;7564;7564;7564;7564;7564;7762;7762;7762;7762;7762;7942;7942;7942;7942;7942;8236;8236;8236;8236;8236;8236;8417;8417;8417;8417;8571;8571;8571;8594;8594;8594 7069;7069;7069;7069;7069;7069;7232;7232;7232;7232;7450;7450;7450;7450;7450;7450;7649;7649;7649;7649;7649;7649;7835;7835;7835;7835;7835;7987;7987;7987;7987;7987;8464;8325;8464;8325;8325;8325;8464;8464;8464;8464;9130;9130;8737;9130;9130;8737 -;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;- 1571    18
-AT1G03987       Chr1    11101   11372   +       272     1
-AT1G01030       Chr1;Chr1;Chr1;Chr1;Chr1        11649;11649;12424;13335;13335   12354;13173;13173;13714;13714   -;-;-;-;-       1905    12
-AT1G01040       Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1;Chr1 23121;23416;24542;24542;24752;24752;25041;25041;25524;25524;25825;25825;26081;26081;26292;26292;26543;26543;26862;26862;27099;27099;27372;27372;27618;27618;27803;27803;28708;28708;28890;28890;29160;29160;30147;30147;30410;30410;30902;30902 24451;24451;24655;24655;24962;24962;25435;25435;25743;25743;25997;25997;26203;26203;26452;26452;26776;26776;27012;27012;27281;27281;27536;27533;27713;27713;28431;28431;28805;28805;29080;29080;30065;30065;30311;30311;30816;30816;31120;31227 +;+;+;+;+;+;+;+;+;+;+;+;+;+;+;+;+;+;+;+;+;+;+;+;+;+;+;+;+;+;+;+;+;+;+;+;+;+;+;+ 6279    67
-AT1G03993       Chr1    23312   24099   -       788     0
+G# Program:featureCounts v2.0.3; Command:"featureCounts" "-T" "8" "-s" "2" "-a" "genome/mm39.ncbiRefSeq.gtf" "-t" "exon" "-g" "gene_id" "--primary" "-o" "analysis/featurecounts/Brain_6mo_br1.fcnts.txt" "-p" "--countReadPairs" "analysis/star/Brain_6mo_br1_Aligned.sortedByCoord.out.bam" 
+Geneid  Chr     Start   End     Strand  Length  analysis/star/Brain_6mo_br1_Aligned.sortedByCoord.out.bam
+TrnP    chrM    15356   15422   -       67      36
+TrnT    chrM    15289   15355   +       67      33
+CYTB    chrM    14145   15288   +       1144    68546
+TrnE    chrM    14071   14139   -       69      2
+ND6     chrM    13552   14070   -       519     223
+ND5     chrM    11742   13565   +       1824    38843
+TrnL2   chrM    11671   11741   +       71      0
+TrnS2   chrM    11613   11671   +       59      0
+TrnH    chrM    11546   11612   +       67      0
+ND4     chrM    10167   11544   +       1378    37498
+ND4L    chrM    9877    10173   +       297     172
+TrnR    chrM    9808    9875    +       68      0
+ND3     chrM    9459    9806    +       348     205
+TrnG    chrM    9391    9458    +       68      0
+COX3    chrM    8607    9390    +       784     1192
+ATP6    chrM    7927    8607    +       681     1250
+ATP8    chrM    7766    7969    +       204     145
+TrnK    chrM    7700    7764    +       65      0
+COX2    chrM    7013    7696    +       684     1183
+TrnD    chrM    6942    7011    +       70      0
+TrnS1   chrM    6870    6938    -       69      0
+COX1    chrM    5328    6872    +       1545    157088
+TrnY    chrM    5260    5326    -       67      1
+TrnC    chrM    5192    5257    -       66      0
+TrnN    chrM    5089    5159    -       71      0
 ```
-
 :::
 
-## Differential expression analysis with  DESeq2 {.smaller}
+## Differential expression analysis with DESeq2 {.smaller}
 
 `DESeq2` is an R package that allows differential expression analysis.
 
 To run `DESeq2`, you will need two key inputs:
 
-- Gene count matrix (i.e., read counts for each gene) (featureCounts output)
-- Sample information file (metadata.csv)
+-   Gene count matrix (i.e., read counts for each gene) (featureCounts output)
+-   Sample information file (metadata.csv)
 
 You will also need to define the type of contrasts/design for the analysis.
 
 For example, suppose we have the following metadata for a dataset:
 
-| sample 	| replicate 	| genotype 	| treatment 	| grp 	|
-|---	|---	|---	|---	|---	|
-| wt_1 	| 1 	| wild-type 	| ctrl 	| wt_ctrl 	|
-| wt_2 	| 2 	| wild-type 	| ctrl 	| wt_ctrl 	|
-| wt_3 	| 1 	| wild-type 	| inhibitor 	| wt_inhib 	|
-| wt_4 	| 2 	| wild-type 	| inhibitor 	| wt_inhib 	|
-| mut_1 	| 1 	| mutant 	| ctrl 	| mut_ctrl 	|
-| mut_2 	| 2 	| mutant 	| ctrl 	| mut_ctrl 	|
-| mut_3 	| 1 	| mutant 	| inhibitor 	| mut_inhib 	|
-| mut_4 	| 2 	| mutant 	| inhibitor 	| mut_inhib 	|
+| sample | replicate | genotype  | treatment | grp       |
+|--------|-----------|-----------|-----------|-----------|
+| wt_1   | 1         | wild-type | ctrl      | wt_ctrl   |
+| wt_2   | 2         | wild-type | ctrl      | wt_ctrl   |
+| wt_3   | 1         | wild-type | inhibitor | wt_inhib  |
+| wt_4   | 2         | wild-type | inhibitor | wt_inhib  |
+| mut_1  | 1         | mutant    | ctrl      | mut_ctrl  |
+| mut_2  | 2         | mutant    | ctrl      | mut_ctrl  |
+| mut_3  | 1         | mutant    | inhibitor | mut_inhib |
+| mut_4  | 2         | mutant    | inhibitor | mut_inhib |
 
 We can run the following contrasts:
 
 **Contrasts**
 
-- contrast = ~ genotype
-- contrast = ~ treatment
-- contrast = ~ genotype + treatment + genotype:treatment
-- contrast = ~ grp
+-   contrast = \~ genotype
+-   contrast = \~ treatment
+-   contrast = \~ genotype + treatment + genotype:treatment
+-   contrast = \~ grp
 
 **Comparisons**
 
-- Compares wild-type vs mutant (irrrespective of treatment)
-- Compares ctrl vs inhibitor (irrespective of genotype)
-- Compares genotype + treatment and their interactions
-- Compares wt_ctrl vs wt_inhib, wt_ctrl vs mut_ctrl, wt_ctrl vs mut_inhib
-
+-   Compares wild-type vs mutant (irrrespective of treatment)
+-   Compares ctrl vs inhibitor (irrespective of genotype)
+-   Compares genotype + treatment and their interactions
+-   Compares wt_ctrl vs wt_inhib, wt_ctrl vs mut_ctrl, wt_ctrl vs mut_inhib
 
 ## DESeq2 (pre-processing output) {.smaller}
 
-The custom `DESeq2` script generates several plots, tables, and genelists organized into the following directories. 
+The custom `DESeq2` script generates several plots, tables, and genelists organized into the following directories.
 
-<br>
-Outputs are organized into the `genelists` or `plots` folders.
-```sh
+<br> Outputs are organized into the `genelists` or `plots` folders.
+
+``` sh
 analysis/genotype/deseq2
 ├── genelists
 └── plots
 ```
 
 The `genelists` folder contains a summary of DEGs, all the deseq2 outputs (stored as an R object (RDS) and a CSV file, and DEGs with annotations.
-```sh
+
+``` sh
 $ ls -1 analysis/deseq2/genotype/genelists/
 deg_summary.csv
 deseq2_results.RDS
@@ -854,80 +975,71 @@ miR163_mut-wt.UpDEG.annotated.csv
 ```
 
 The `plots` folder contains a bar plot summarizing the number of DEGs, a PCA plot, and an enhanced volcano plot highlighting the DEGs.
-```sh
+
+``` sh
 $ ls -1 analysis/deseq2/genotype/plots/*png
 analysis/deseq2/genotype/plots/DEG_summary.png
 analysis/deseq2/genotype/plots/Enhancedvolcano_miR163_mut-vs-wt.png
 analysis/deseq2/genotype/plots/PCA.png
 ```
+
 <br>
 
-::: {.panel-tabset}
-
+::: panel-tabset
 ### Summary table
 
-| Comparisons | Counts_Up_or_Down | Counts_Up | Counts_Down  |
-|---	| :---:	| :---:	| :---:	|
-| miR163_mut-wt | 3 | 2 | 1 |
+| Comparisons   | Counts_Up_or_Down | Counts_Up | Counts_Down |
+|---------------|:-----------------:|:---------:|:-----------:|
+| miR163_mut-wt |         3         |     2     |      1      |
 
 ### PCA plot
 
 ![](img/PCA.png){width="100%"}
 
-### Volcano plot (p < 0.05, l2fc > 1)
+### Volcano plot (p \< 0.05, l2fc \> 1)
 
 ![](img/Enhancedvolcano_miR163_mut-vs-wt.png){width="100%"}
-
 :::
 
 ## Summary using MultiQC {.smaller}
 
 `MultiQC` is used to generate a summary of the raw and processed data. The program aggregates all the log files from different programs (e.g., trim_galore, STAR) and provide a summary HTML file.
 
-
 ## Data Visualization with IGV {.smaller}
 
 To inspect and examine your RNA-seq results, you can load the **BigWig** or **BAM** files into IGV.
 
-Download the `.bam`, `.bam.bai`, and `.bw` files. The `.bam` files are quite large (> 1Gb) whereas the `.bw` files are smaller (Mb). These files can be loaded into IGV for visualization and inspection.
+Download the `.bam`, `.bam.bai`, and `.bw` files. The `.bam` files are quite large (\> 1Gb) whereas the `.bw` files are smaller (Mb). These files can be loaded into IGV for visualization and inspection.
 
 **Show IGV demonstration**
 
 [IGV website](https://igv.org)
 
-
 ## Hands-On Session {.smaller}
 
 We will have a hands-on practice with the analysis workflow using a Jupyter notebook.
 
-
 ## Feedback {.smaller}
 
-<br>
-Please take a few minutes to provide feedback for this workshop by filling out the workshop survey. 
+<br> Please take a few minutes to provide feedback for this workshop by filling out the workshop survey.
 
-<br>
-All responses are anonymous and will help to improve future workshops and training.
+<br> All responses are anonymous and will help to improve future workshops and training.
 
-<br>
-[Survey link](https://bit.ly/4062Wij)
+<br> [Survey link](https://bit.ly/4062Wij)
 
-
-# Additional Slides 
+# Additional Slides
 
 ## Downloading/Uploading files from the server {.smaller}
 
-There will be times where you would want to see plots or access files generated on the cluster. For easier access, you can use an SFTP program with a GUI that connects to the server and provides direct access to those files.  
+There will be times where you would want to see plots or access files generated on the cluster. For easier access, you can use an SFTP program with a GUI that connects to the server and provides direct access to those files.
 
-<br>
-There are several free GUI applications including [Filezilla](https://filezilla-project.org), [Cyberduck](https://cyberduck.io), [WinSCP](https://winscp.net/eng/download.php).
+<br> There are several free GUI applications including [Filezilla](https://filezilla-project.org), [Cyberduck](https://cyberduck.io), [WinSCP](https://winscp.net/eng/download.php).
 
 These applications are available for MacOS, WinOS, and Linux platforms.
 
 Once you have the application installed, start up the program and follow the instructions to connect to a site.
 
-<br>
-[Click here](https://hpcc.ucr.edu/manuals/hpc_cluster/sharing/#authentication-with-passwordduo) for instructions to connect and authenticate to the cluster using `Filezilla` with password + DUO authentication.
+<br> [Click here](https://hpcc.ucr.edu/manuals/hpc_cluster/sharing/#authentication-with-passwordduo) for instructions to connect and authenticate to the cluster using `Filezilla` with password + DUO authentication.
 
 ## Submitting jobs on the cluster {.smaller}
 
@@ -935,15 +1047,16 @@ For this workshop, we will submit jobs to the cluster (to run in the background)
 
 Example job submission:
 
-```sh
+``` sh
 sbatch code/multiqc.sh
 ```
 
 The submitted job will have a six-digit JOBID. To check on the status of your submitted job(s),
 
-```sh
+``` sh
 # Show all jobs from USER
 squeue -u <USERNAME>
+squeue --me
 
 # Show specific job with JOBID
 scontrol show job <JOBID>
@@ -951,7 +1064,7 @@ scontrol show job <JOBID>
 
 To cancel a submitted job, use the JOBID.
 
-```sh
+``` sh
 # To delete a single job
 scancel -i <JOBID>
 scancel <JOBID>
@@ -960,10 +1073,10 @@ scancel <JOBID>
 scancel -u <USERNAME>
 ```
 
-:::{.callout-tip}
+::: callout-tip
 All submitted jobs will generate a log file (stored in the `log` folder) containing the JOBNAME_JOBID.log
 
-- JOBNAME (e.g., fastqc, trim_galore)
+-   JOBNAME (e.g., fastqc, trim_galore)
 
 You can take a look at the log file to see standard output/errors from running the script.
 :::
@@ -972,36 +1085,35 @@ You can take a look at the log file to see standard output/errors from running t
 
 We will create a conda environment containing bioinformatics software packages not readily available on the cluster for data processing and analysis. This conda environment includes special R packages (e.g., EnhancedVolcano) and software (e.g., multiqc).
 
-
 <br>
 
 To create the conda environment:
 
-```sh
+``` sh
 sbatch code/create-conda-env.sh
 ```
+
 **Note**: *This step can take anywhere from 25-45 minutes. However, it's running in the background so we can come back to it later.*
 
-<br>
-To make sure the conda environment was created successfully, we can activate the conda environment:
+<br> To make sure the conda environment was created successfully, we can activate the conda environment:
 
-```sh
+``` sh
 conda activate DEG-analysis
 ```
 
-<br>
-You should now see the environment `(DEG-analysis)` next to your `$` prompt.
+<br> You should now see the environment `(DEG-analysis)` next to your `$` prompt.
 
-```sh
+``` sh
 (DEG-analysis) $
 ```
 
-::: {.callout-tip}
+::: callout-tip
 To get out of the conda environment, type:
 
-```sh
+``` sh
 conda deactivate
 ```
+
 The environment name in parentheses should now disappear.
 :::
 
@@ -1009,7 +1121,7 @@ The environment name in parentheses should now disappear.
 
 We will install Bash for Jupyter notebook to enable running shell scripts within the notebook.
 
-First, open a terminal session within the Jupyter Lab.  
+First, open a terminal session within the Jupyter Lab.
 
 ![](img/Launcher.png)
 
@@ -1017,29 +1129,30 @@ First, open a terminal session within the Jupyter Lab.
 
 In the terminal, we'll first create a conda environment and then install the `bash-kernel`.
 
-- create a conda environment name jupyter-nb
-```sh 
+-   create a conda environment name jupyter-nb
+
+``` sh
 conda create -n jupyter-nb python=3 ipython notebook
 ```
 
-- activate the conda environment
-```sh
+-   activate the conda environment
+
+``` sh
 conda activate jupyter-nb
 ```
 
-- install the bash kernel
-```sh 
+-   install the bash kernel
+
+``` sh
 pip install bash_kernel
 ```
 
-- Add bash to spec list
-```sh 
+-   Add bash to spec list
+
+``` sh
 python -m bash_kernel.install
 ```
 
-::: {.callout-tip}
-
+::: callout-tip
 If the Bash kernel doesn't appear as an option for your notebook, you can shutdown all kernels and try again
-
 :::
-

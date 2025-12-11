@@ -4,53 +4,25 @@ suppressPackageStartupMessages(library(tidyverse))
 library(glue)
 
 # Read in file
-data <- read_tsv("raw/PRJNA950346.metadata.tmp", col_names = F)
+data <- read_tsv("raw/PRJNA936435.metadata.tmp", col_names = F, skip = 16)
 
 # Clean up file
 data_clean <- data %>%
        select(srr_id = X8, 
-              ecotype = X3, 
-              genotype = X4,
-              treatment = X5,
-              tissue = X2) %>%
-       mutate(biorep = c(rep(1:3,2))) %>%
-       mutate(genotype = case_when(
-              grepl("WT", genotype) ~ "wt",
-              TRUE ~ "miR163_mut"
-              )) %>%
-       mutate(samplename = case_when(
-              grepl("wt", genotype) ~ glue("wt_{biorep}"),
-              TRUE ~ glue("mir163_{biorep}")
-              )) %>%
-       mutate(fq1 = glue("raw/{srr_id}_1.fastq.gz"),
-              fq2 = glue("raw/{srr_id}_2.fastq.gz")) %>%
-       select(samplename, fq1, fq2, srr_id, ecotype, genotype, treatment, tissue, biorep)
+              sex = X2, 
+              organ = X1,
+              strain = X3,
+              age = X5) %>%
+       mutate(biorep = c(rep(1:4,28)),
+              samplename = glue("{organ}_{age}_br{biorep}"),
+              factor = glue("{organ}_{age}"),
+              fq1 = glue("{srr_id}_1.fastq.gz"),
+              fq2 = glue("{srr_id}_2.fastq.gz")) %>%
+       select(samplename, fq1, fq2, srr_id, sex, strain, organ, age, biorep, factor)
 
 # Export file
 write_csv(data_clean, "metadata/metadata.csv")
 
-### Metadata for the subsampled dataset
-
-# Clean up file
-data_clean_sub1M <- data %>%
-       select(srr_id = X8, 
-              ecotype = X3, 
-              genotype = X4,
-              treatment = X5,
-              tissue = X2) %>%
-       mutate(srr_id = glue("{srr_id}_sub1M")) %>%
-       mutate(biorep = c(rep(1:3,2))) %>%
-       mutate(genotype = case_when(
-              grepl("WT", genotype) ~ "wt", 
-              TRUE ~ "miR163_mut"
-              )) %>%
-       mutate(samplename = case_when(
-              grepl("wt", genotype) ~ glue("wt_{biorep}"),
-              TRUE ~ glue("mir163_{biorep}")
-              )) %>%
-       mutate(fq1 = glue("raw/{srr_id}_1.fastq.gz"),
-              fq2 = glue("raw/{srr_id}_2.fastq.gz")) %>%
-       select(samplename, fq1, fq2, srr_id, ecotype, genotype, treatment, tissue, biorep)
-
-# Export file
-write_csv(data_clean_sub1M, "metadata/metadata_sub1M.csv")
+data_subset_6mo <- data_clean |>
+       filter(age == "6mo")
+write_csv(data_subset_6mo, "metadata/metadata_subset_6mo.csv")

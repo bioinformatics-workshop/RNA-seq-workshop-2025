@@ -6,30 +6,32 @@
 # Make changes to the following parameters pertaining to your dataset 
 
 # Library info
-STRANDED=0 # 0 (unstranded), 1 (stranded), 2 (reverse stranded)
+STRANDED=2 # 0 (unstranded), 1 (stranded), 2 (reverse stranded)
 PAIRED=T # T (paired-end) or F (single-end)
 
 # Genome and Index files
-INDEX=index/TAIR10_STAR
-GTF=genome/Araport11_GFF3_genes_transposons.201606.gtf
-GENOME_FASTA=genome/TAIR10_Chr.all.fasta
+STAR_INDEX=index/mm39-star
+GTF=genome/mm39.ncbiRefSeq.gtf
+GENOME_FASTA=genome/mm39.fa.gz
 
 
 ### RNA-seq workflow parameters ##########
 ## Only edit if needed
 
 ### Input and Output directories #################
-SAMPLES=metadata/metadata_sub1M.csv
-COMPARISONS=metadata/comparisons.csv
+SAMPLES=metadata/metadata_subset_6mo.csv
+# COMPARISONS=metadata/comparisons.csv
 
 RAW_DIR=raw
 FASTQC_DIR=analysis/fastqc
 TRIMGALORE_DIR=analysis/trimgalore
 STAR_DIR=analysis/star
 FEATURECOUNTS_DIR=analysis/featurecounts
-DESEQ2_DIR=analysis/deseq2
-DESEQ2_FCT=genotype
+DE_METHOD=deseq2
+FACTOR=factor
+DEG_DIR=analysis/deseq2
 QC_DIR=analysis/multiqc
+TMP_DIR=$SCRATCH
 
 # wrapper functions
 if [ -f code/wrapper_functions.txt ]; then

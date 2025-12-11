@@ -16,16 +16,17 @@ timestamp
 ## Job variables
 N=${SLURM_ARRAY_TASK_ID}
 
-SRR_INFO=raw/PRJNA950346.metadata.tmp
+SRR_INFO=metadata/metadata_subset_6mo.csv
+# SRR_INFO=raw/PRJNA936435.metadata.tmp
 RAW_DIR=raw
 
 # current version 3.0.0 4/28/22
 module load sratoolkit
 
-sed -n ${N}p $SRR_INFO | cut -f8 | while IFS="" read SRR_ID
-
-fastq-dump --split-3 --gzip --outdir ${RAW_DIR} ${SRR_ID}
-
+sed -n ${N}p $SRR_INFO | cut -f8 | while IFS="," read SAMPLENAME FQ1 FQ2 SRR_ID REST
+do
+    fastq-dump --split-3 --gzip --outdir ${RAW_DIR} ${SRR_ID}
+done
 
 # get ending time point
 echo "Run complete"

@@ -18,7 +18,7 @@ module load ncbi_edirect
 
 # set parameters
 DB="sra"
-BIOPROJ="PRJNA950346"
+BIOPROJ="PRJNA936435"
 RAW_DIR=raw
 
 # create output directory

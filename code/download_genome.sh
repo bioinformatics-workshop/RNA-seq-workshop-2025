@@ -9,22 +9,22 @@
 # Download reference genomes
 ######################################
 
+# UCSC/GenBank assembly and annotations
+# https://hgdownload.soe.ucsc.edu/goldenPath/mm39/bigZips
+GENOME=https://hgdownload.soe.ucsc.edu/goldenPath/mm39/bigZips/mm39.fa.gz
+GTF=https://hgdownload.soe.ucsc.edu/goldenPath/mm39/bigZips/genes/mm39.ncbiRefSeq.gtf.gz
+# REFGENE_GTF=https://hgdownload.soe.ucsc.edu/goldenPath/mm39/bigZips/genes/refGene.gtf.gz
+OUT_DIR=genome
 
-# Arabidopsis reference genome (TAIR10/Araport11)
-# Resources available @ https://www.arabidopsis.org
+# download files
+# for URL in TRANSCRIPTS GENOME GTF GFF3
+# do
+#   wget --directory-prefix=${OUT_DIR} ${!URL}
+# done
 
-# Set Parameters
-CHROM_URL=https://www.arabidopsis.org/download/file?path=Sequences/Assemblies/TAIR9_chr_all.fas
-GFF_URL=https://www.arabidopsis.org/download/file?path=Genes/Araport11_genome_release/Araport11_GFF3_genes_transposons.current.gff.gz
-GTF_URL=https://www.arabidopsis.org/download/file?path=Genes/Araport11_genome_release/Araport11_GTF_genes_transposons.current.gtf.gz
-README_URL=https://www.arabidopsis.org/download/file?path=Genes/Araport11_genome_release/README.202404.md
-OUT_DIR=genome  
-
-
-# Download each link
-for URL in CHROM_URL GFF_URL GTF_URL README_URL
+for URL in GENOME GTF REFGENE_GTF
 do
-    wget -r --reject="index.html*" --no-parent -l1 -nH --directory-prefix=${OUT_DIR} ${!URL}
+  wget --directory-prefix=${OUT_DIR} ${!URL}
 done
 
 

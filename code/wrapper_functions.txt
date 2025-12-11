@@ -2,14 +2,18 @@
 # Wrappers to run specific programs
 # You can comment out or add parameters as needed
 
-# get timestamp
+################## get timestamp ############################## 
+###############################################################  
+
 timestamp(){
 
     date +%F_%T
 
 }
 
-# fastqc wrapper
+################## fastqc wrapper ############################# 
+###############################################################  
+
 run_fastqc(){
 
     module load fastqc/0.11.9 
@@ -32,7 +36,9 @@ run_fastqc(){
     fi
 }
 
-# trim_galore wrapper
+################ trim_galore wrapper ########################## 
+###############################################################  
+
 run_trimgalore(){
 
     module load trim_galore/0.6.7
@@ -58,20 +64,22 @@ run_trimgalore(){
     fi
 }
 
-# star wrapper
+##################### star wrapper ############################
+###############################################################  
+
 run_star(){
 
-    module load star/2.7.11a
+    module load star/2.7.10b
 
     # setting params
     STAR_PARAMS=(
         --runThreadN ${NUM_CORES}
         --runMode alignReads
-        --genomeDir ${INDEX}
+        --genomeDir ${STAR_INDEX}
         --readFilesCommand zcat
         --outSAMtype BAM SortedByCoordinate
         --outFileNamePrefix ${STAR_DIR}/${SAMPLENAME}_
-        --outFilterMismatchNmax 0
+        --outFilterMismatchNmax 2
         --outFilterMultimapNmax 1
         --quantMode GeneCounts
         --outWigType wiggle
@@ -92,22 +100,30 @@ run_star_index(){
 
     module load star/2.7.11a
 
+    # unzip files
+    unpigz -c ${GENOME_FASTA} > fasta_TMP
+    unpigz -c ${GTF} > gtf_TMP
+
     STAR_PARAMS=(
         --runThreadN ${NUM_CORES}
         --runMode genomeGenerate
-        --genomeDir ${INDEX}
-        --genomeFastaFiles ${GENOME_FASTA}
-        --sjdbGTFfile $GTF
+        --genomeDir ${STAR_INDEX}
+        --genomeFastaFiles fasta_TMP
+        --sjdbGTFfile gtf_TMP
         --sjdbOverhang 99
         --genomeSAindexNbases 12
     )
 
     STAR "${STAR_PARAMS[@]}"
 
+    # clean up
+    rm fasta_TMP gtf_TMP
 }
 
 
-# featurecounts wrapper
+################# featurecounts wrapper #######################
+###############################################################  
+
 run_featurecounts(){
 
     module load subread/2.0.3
@@ -133,7 +149,9 @@ run_featurecounts(){
     fi
 }
 
-# samtools indexing wrapper
+################# samtools indexing wrapper ###################  
+###############################################################  
+
 sam_index(){
 
     module load samtools/1.17
@@ -141,7 +159,9 @@ sam_index(){
 
 }
 
-# conversion to bw for IGV
+#################### conversion to bw for IGV #################
+###############################################################  
+
 bam2bw(){
 
     module load deeptools/3.5.1
@@ -154,7 +174,9 @@ bam2bw(){
                 --skipNAs
 }
 
-# multiqc wrapper
+###################  multiqc wrapper ##########################
+###############################################################  
+
 multiqc_summary(){
 
     module load multiqc/1.19
@@ -163,4 +185,83 @@ multiqc_summary(){
     
     multiqc -f -o ${QC_DIR} analysis
 
+}
+
+###################### intervene wrapper ######################
+###############################################################  
+
+intervene_venn(){
+    
+    for FIGTYPE in png pdf
+    do
+        intervene venn \
+            --input "${INPUT_FILES[@]}" \
+            --type list \
+            --names ${LABELS} \
+            --save-overlaps \
+            --output ${OUTDIR}/${FACTOR} \
+            --project ${FACTOR} \
+            --figtype $FIGTYPE
+    done
+}
+
+intervene_upset(){
+    
+    for FIGTYPE in png pdf
+    do
+        intervene upset \
+            --input "${INPUT_FILES[@]}" \
+            --type list \
+            --names ${LABELS} \
+            --save-overlaps \
+            --output ${OUTDIR}/${FACTOR} \
+            --project ${FACTOR} \
+            --figtype $FIGTYPE
+    done
+}
+
+###################### salmon wrapper ######################
+###############################################################  
+
+run_salmon_index(){
+  
+  module load salmon/1.7.0
+
+  INDEX_PARAMS=(
+    -t ${GENOME_TRANSCRIPT_FASTA}
+    -i ${SALMON_INDEX}
+    --gencode
+    -d genome/decoys.txt
+    --threads ${NUM_CORES}
+  )
+
+  salmon index "${INDEX_PARAMS[@]}"
+  
+}
+
+run_salmon(){
+  
+  module load salmon/1.7.0
+
+  echo "running salmon quantification"
+  
+  QUANT_PARAMS=(
+    -i ${SALMON_INDEX}
+    -l A
+    --threads ${NUM_CORES}
+    -o ${SALMON_DIR}/${SAMPLENAME}
+    --numBootstraps 100
+  )
+
+  echo -e "PARAMETERS: $QUANT_PARAMS[@]"
+  
+  if [ ${PAIRED} == "T" ]
+  then
+      salmon quant "${QUANT_PARAMS[@]}" \
+        -1 ${TRIMGALORE_DIR}/${SAMPLENAME}_val_1.fq.gz \
+        -2 ${TRIMGALORE_DIR}/${SAMPLENAME}_val_2.fq.gz 
+  else
+      salmon quant "${QUANT_PARAMS[@]}" \
+        -r ${TRIMGALORE_DIR}/${SAMPLENAME}_trimmed.fq.gz
+  fi
 }
