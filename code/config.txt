@@ -20,7 +20,6 @@ GENOME_FASTA=genome/mm39.fa.gz
 
 ### Input and Output directories #################
 SAMPLES=metadata/metadata_subset_6mo.csv
-# COMPARISONS=metadata/comparisons.csv
 
 RAW_DIR=raw
 FASTQC_DIR=analysis/fastqc

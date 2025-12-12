@@ -3,7 +3,7 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=100g
-#SBATCH --time=2:00:00
+#SBATCH --time=4:00:00
 #SBATCH --job-name="02-rnaseq-diffexpr"
 #SBATCH --output=log/%x_%j.log
 ##################################################################
@@ -30,7 +30,7 @@ NUM_CORES=8
 ## Running workflow
 echo "## Starting Differential abundance analysis ##########"
 
-Rscript --vanilla code/differential_expression.R ${FACTOR}
+Rscript --vanilla code/differential_expression.R ${SAMPLE} ${FACTOR}
 multiqc_summary
 
 # end time stamp

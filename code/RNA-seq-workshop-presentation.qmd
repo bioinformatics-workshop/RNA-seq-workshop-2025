@@ -969,20 +969,60 @@ The `genelists` folder contains a summary of DEGs, all the deseq2 outputs (store
 
 ``` sh
 $ ls -1 analysis/deseq2/factor/genelists/
-deg_summary.csv
+Brain_6mo-Heart_6mo.deseq2_output.csv
+Brain_6mo-Heart_6mo.DownDEG.annotated.csv
+Brain_6mo-Heart_6mo.UpDEG.annotated.csv
+Brain_6mo-Kidney_6mo.deseq2_output.csv
+Brain_6mo-Kidney_6mo.DownDEG.annotated.csv
+Brain_6mo-Kidney_6mo.UpDEG.annotated.csv
+Brain_6mo-Liver_6mo.deseq2_output.csv
+Brain_6mo-Liver_6mo.DownDEG.annotated.csv
+Brain_6mo-Liver_6mo.UpDEG.annotated.csv
+Brain_6mo-Lung_6mo.deseq2_output.csv
+Brain_6mo-Lung_6mo.DownDEG.annotated.csv
+Brain_6mo-Lung_6mo.UpDEG.annotated.csv
+Brain_6mo-Muscle_6mo.deseq2_output.csv
+Brain_6mo-Muscle_6mo.DownDEG.annotated.csv
+Brain_6mo-Muscle_6mo.UpDEG.annotated.csv
+Brain_6mo-Skin_6mo.deseq2_output.csv
+Brain_6mo-Skin_6mo.DownDEG.annotated.csv
+Brain_6mo-Skin_6mo.UpDEG.annotated.csv
 deseq2_results.RDS
-miR163_mut-wt.deseq2_output.csv
-miR163_mut-wt.DownDEG.annotated.csv
-miR163_mut-wt.UpDEG.annotated.csv
 ```
 
 The `plots` folder contains a bar plot summarizing the number of DEGs, a PCA plot, and an enhanced volcano plot highlighting the DEGs.
 
 ``` sh
 $ ls -1 analysis/deseq2/factor/plots/*png
-analysis/deseq2/factor/plots/DEG_summary.png
-analysis/deseq2/factor/plots/Enhancedvolcano_miR163_mut-vs-wt.png
-analysis/deseq2/factor/plots/PCA.png
+DEG_summary.pdf
+DEG_summary.png
+Enhancedvolcano_Brain_6mo-vs-Heart_6mo.pdf
+Enhancedvolcano_Brain_6mo-vs-Heart_6mo.png
+Enhancedvolcano_Brain_6mo-vs-Kidney_6mo.pdf
+Enhancedvolcano_Brain_6mo-vs-Kidney_6mo.png
+Enhancedvolcano_Brain_6mo-vs-Liver_6mo.pdf
+Enhancedvolcano_Brain_6mo-vs-Liver_6mo.png
+.
+.
+Heatmap_top25DEGs_Brain_6mo-vs-Heart_6mo.pdf
+Heatmap_top25DEGs_Brain_6mo-vs-Kidney_6mo.pdf
+Heatmap_top25DEGs_Brain_6mo-vs-Liver_6mo.pdf
+Heatmap_top25DEGs_Brain_6mo-vs-Lung_6mo.pdf
+Heatmap_top25DEGs_Brain_6mo-vs-Muscle_6mo.pdf
+Heatmap_top25DEGs_Brain_6mo-vs-Skin_6mo.pdf
+Heatmap_top25DEGs_Heart_6mo-vs-Kidney_6mo.pdf
+.
+.
+PCA_files
+PCA.html
+PCA.pdf
+PCA.png
+upset_Down.pdf
+upset_Down.png
+upset_UporDown.pdf
+upset_UporDown.png
+upset_Up.pdf
+upset_Up.png
 ```
 
 <br>
@@ -990,17 +1030,42 @@ analysis/deseq2/factor/plots/PCA.png
 ::: panel-tabset
 ### Summary table
 
-| Comparisons   | Counts_Up_or_Down | Counts_Up | Counts_Down |
-|---------------|:-----------------:|:---------:|:-----------:|
-| miR163_mut-wt |         3         |     2     |      1      |
+| Comparisons           | Counts_Up_or_Down | Counts_Up | Counts_Down |
+|:----------------------|:-----------------:|:---------:|:-----------:|
+| Brain_6mo-Heart_6mo   | 11898             | 6793      | 5105        |
+| Brain_6mo-Kidney_6mo  | 12042             | 6721      | 5321        |
+| Brain_6mo-Liver_6mo   | 12828             | 7602      | 5226        |
+| Brain_6mo-Lung_6mo    | 12199             | 6539      | 5660        |
+| Brain_6mo-Muscle_6mo  | 12139             | 6864      | 5275        |
+| Brain_6mo-Skin_6mo    | 12741             | 6401      | 6340        |
+| Heart_6mo-Kidney_6mo  | 9147              | 4591      | 4556        |
+| Heart_6mo-Liver_6mo   | 10015             | 5769      | 4246        |
+| Heart_6mo-Lung_6mo    | 9545              | 4047      | 5498        |
+| Heart_6mo-Muscle_6mo  | 5065              | 2527      | 2538        |
+| Heart_6mo-Skin_6mo    | 10355             | 4341      | 6014        |
+| Kidney_6mo-Liver_6mo  | 8280              | 5048      | 3232        |
+| Kidney_6mo-Lung_6mo   | 10316             | 4500      | 5816        |
+| Kidney_6mo-Muscle_6mo | 9840              | 5087      | 4753        |
+| Kidney_6mo-Skin_6mo   | 10993             | 4592      | 6401        |
+| Liver_6mo-Lung_6mo    | 11757             | 4627      | 7130        |
+| Liver_6mo-Muscle_6mo  | 10593             | 4623      | 5970        |
+| Liver_6mo-Skin_6mo    | 11491             | 4225      | 7266        |
+| Lung_6mo-Muscle_6mo   | 11106             | 6338      | 4768        |
+| Lung_6mo-Skin_6mo     | 9827              | 4525      | 5302        |
+| Muscle_6mo-Skin_6mo   | 10437             | 4476      | 5961        |
+
+### Summary plot
+
+![](../analysis/deseq2/factor/plots/DEG_summary.png){width="100%"}
 
 ### PCA plot
 
-![](img/PCA.png){width="100%"}
+![](../analysis/deseq2/factor/plots/PCA.png){width="100%"}
 
 ### Volcano plot (p \< 0.05, l2fc \> 1)
 
-![](img/Enhancedvolcano_miR163_mut-vs-wt.png){width="100%"}
+![](../analysis/deseq2/factor/plots/Enhancedvolcano_Heart_6mo-vs-Muscle_6mo.png){width="100%"}
+
 :::
 
 ## Summary using MultiQC {.smaller}

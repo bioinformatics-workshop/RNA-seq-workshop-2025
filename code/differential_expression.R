@@ -15,8 +15,8 @@ library(plotly)
 library(clusterProfiler)
 library(pheatmap)
 
-# FCT <- args[1]
-FCT <- "factor"
+METADATA <- args[1]
+FCT <- args[2]
 
 ## Create output directory
 # if( !dir.exists("analysis/deseq2") ){
@@ -28,7 +28,7 @@ mmu <- org.Mm.eg.db
 annot <- clusterProfiler::bitr(keys(mmu), fromType = "ENTREZID", toType = c("SYMBOL", "GENENAME"), OrgDb = mmu)
 
 ## Load sample info and metadata
-sampleinfo <- read_csv("metadata/metadata.csv", col_names = TRUE) |>
+sampleinfo <- read_csv(METADATA, col_names = TRUE) |>
   column_to_rownames("samplename")
 sample_order <- rownames(sampleinfo)
 
